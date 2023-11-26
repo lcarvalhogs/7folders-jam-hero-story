@@ -10,3 +10,5 @@ script = ExtResource("1_oqf47")
 
 [node name="DialogContainer" parent="." instance=ExtResource("2_2px10")]
 position = Vector2(16, 8)
+
+[node name="Managers" type="Node2D" parent="."]
