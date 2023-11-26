@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://667sj8ah3xjj"]
+
+[ext_resource type="Script" path="res://Scenes/DialogContainer.gd" id="1_48vn4"]
+[ext_resource type="FontFile" uid="uid://cedktrt60q57o" path="res://Fonts/TLOZ-Links-Awakening.ttf" id="2_s76ey"]
+
+[node name="DialogContainer" type="Node2D"]
+script = ExtResource("1_48vn4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 128.0
+offset_bottom = 24.0
+color = Color(0.0588235, 0.219608, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("2_s76ey")
+theme_override_font_sizes/font_size = 8
+text = "lorem ipsum"
