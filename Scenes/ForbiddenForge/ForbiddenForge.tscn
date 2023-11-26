@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bw33w6vk01qxa"]
+[gd_scene load_steps=13 format=3 uid="uid://bw33w6vk01qxa"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_siqlp"]
 [ext_resource type="Texture2D" uid="uid://b44i3ilnirowj" path="res://Scenes/ForbiddenForge/ForbiddenForge.png" id="2_aoen0"]
 [ext_resource type="Texture2D" uid="uid://dqxtjjtcx521e" path="res://Scenes/ForbiddenForge/StoneGolem-Sheet.png" id="3_mbx0h"]
 [ext_resource type="Script" path="res://Scenes/ForbiddenForge/StoneGolem.gd" id="4_0e0a2"]
 [ext_resource type="Script" path="res://Scenes/ForbiddenForge/ForbiddenForgeManager.gd" id="5_jjs67"]
+[ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_3goeg"]
 
 [sub_resource type="Animation" id="Animation_xm28h"]
 length = 0.001
@@ -44,10 +45,13 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6tug"]
-size = Vector2(34, 27)
+size = Vector2(33, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5h8q"]
-size = Vector2(40, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0073b"]
+size = Vector2(18, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7lrm"]
+size = Vector2(25, 21)
 
 [node name="Level" instance=ExtResource("1_siqlp")]
 text_blocks = Array[String](["You encounter a", "Stone Golem.", "What do you do?"])
@@ -76,14 +80,23 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem" index="2"]
-visible = false
-position = Vector2(81, 60.5)
+position = Vector2(80.5, 61.5)
 shape = SubResource("RectangleShape2D_m6tug")
 
-[node name="Area2D" type="Area2D" parent="Managers/StoneGolem" index="3"]
-collision_layer = 4
+[node name="Interactable" parent="Managers/StoneGolem" index="3" instance=ExtResource("6_3goeg")]
+collision_layer = 5
 collision_mask = 3
+type = "ForbiddenForge_battle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem/Area2D" index="0"]
-position = Vector2(81, 62)
-shape = SubResource("RectangleShape2D_f5h8q")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem/Interactable" index="0"]
+position = Vector2(79, 75)
+shape = SubResource("RectangleShape2D_0073b")
+
+[node name="Interactable2" parent="Managers/StoneGolem" index="4" instance=ExtResource("6_3goeg")]
+collision_layer = 5
+collision_mask = 3
+type = "ForbiddenForge_back"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem/Interactable2" index="0"]
+position = Vector2(79.5, 55.5)
+shape = SubResource("RectangleShape2D_y7lrm")

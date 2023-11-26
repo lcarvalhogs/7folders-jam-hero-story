@@ -4,23 +4,33 @@ extends StaticBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("idle")
-	$Area2D.connect("body_entered", on_Area2D_entered, CONNECT_DEFERRED)
-	$Area2D.connect("body_exited", on_Area2D_exited, CONNECT_DEFERRED)
+	$Interactable.connect("body_entered", on_DirectInteract_entered, CONNECT_DEFERRED)
+	$Interactable.connect("body_exited", on_DirectInteract_exited, CONNECT_DEFERRED)
+
+	$Interactable2.connect("body_entered", on_BackInteract_entered, CONNECT_DEFERRED)
+	$Interactable2.connect("body_exited", on_BackInteract_exited, CONNECT_DEFERRED)
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func on_Area2D_entered(area):
-	print("entered area:")
+func on_DirectInteract_entered(area):
+	print("on_DirectInteract_entered:")
 	print(area)
 	if area is Hero:
-		area.set_interactable(self)
+		area.set_interactable($Interactable)
 
-func on_Area2D_exited(area):
-	print("exited area:")
+func on_DirectInteract_exited(area):
+	print("on_DirectInteract_exited area:")
+	if area is Hero:
+		area.set_interactable(null)
+	print(area)
+
+func on_BackInteract_entered(area):
+	print("on_BackInteract_entered:")
+	print(area)
+	if area is Hero:
+		area.set_interactable($Interactable2)
+
+func on_BackInteract_exited(area):
+	print("on_BackInteract_exited area:")
 	if area is Hero:
 		area.set_interactable(null)
 	print(area)

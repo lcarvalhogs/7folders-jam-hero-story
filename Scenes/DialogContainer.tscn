@@ -19,3 +19,54 @@ offset_bottom = 20.0
 theme_override_fonts/font = ExtResource("2_s76ey")
 theme_override_font_sizes/font_size = 8
 text = "lorem ipsum"
+
+[node name="Selection_Yes" type="Node2D" parent="."]
+visible = false
+position = Vector2(9, 22)
+
+[node name="ColorRect" type="ColorRect" parent="Selection_Yes"]
+offset_right = 40.0
+offset_bottom = 16.0
+color = Color(0.0588235, 0.219608, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="Selection_Yes"]
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("2_s76ey")
+theme_override_font_sizes/font_size = 8
+text = "Yes"
+
+[node name="Selection" type="ColorRect" parent="Selection_Yes"]
+visible = false
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.607843, 0.737255, 0.0588235, 1)
+
+[node name="Selection_No" type="Node2D" parent="."]
+visible = false
+position = Vector2(73, 22)
+
+[node name="ColorRect" type="ColorRect" parent="Selection_No"]
+offset_right = 40.0
+offset_bottom = 16.0
+color = Color(0.0588235, 0.219608, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="Selection_No"]
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("2_s76ey")
+theme_override_font_sizes/font_size = 8
+text = "No"
+
+[node name="Selection" type="ColorRect" parent="Selection_No"]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.607843, 0.737255, 0.0588235, 1)

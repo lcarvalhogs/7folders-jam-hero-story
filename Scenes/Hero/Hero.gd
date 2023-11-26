@@ -3,6 +3,7 @@ class_name Hero
 
 var _speed = 60
 var _interactable: Node2D
+var _is_interacting: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +13,7 @@ func _ready():
 func process_input(delta: float):
 	if Input.is_action_just_pressed("action"):
 		if _interactable != null:
-			_interactable.interact()
+			_is_interacting = _interactable.interact()
 		return
 
 	if Input.is_action_pressed("move_right"):
@@ -63,3 +64,6 @@ func move(x: float, y: float):
 
 func set_interactable(interactable: Node2D):
 	_interactable = interactable
+
+func is_interacting():
+	return _is_interacting

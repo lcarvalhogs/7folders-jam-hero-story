@@ -11,9 +11,8 @@ func _ready():
 	dialog_container = $DialogContainer
 	dialog_container.set_text(text_blocks)
 	dialog_container.play_next()
+
+	$Managers/StoneGolem/Interactable.set_dialog_container(dialog_container)
+	$Managers/StoneGolem/Interactable2.set_dialog_container(dialog_container)
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
