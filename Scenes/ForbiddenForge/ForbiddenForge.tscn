@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw33w6vk01qxa"]
+[gd_scene load_steps=11 format=3 uid="uid://bw33w6vk01qxa"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_siqlp"]
 [ext_resource type="Texture2D" uid="uid://b44i3ilnirowj" path="res://Scenes/ForbiddenForge/ForbiddenForge.png" id="2_aoen0"]
@@ -43,6 +43,12 @@ _data = {
 "idle": SubResource("Animation_0c70d")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6tug"]
+size = Vector2(34, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5h8q"]
+size = Vector2(40, 32)
+
 [node name="Level" instance=ExtResource("1_siqlp")]
 text_blocks = Array[String](["You encounter a", "Stone Golem.", "What do you do?"])
 
@@ -50,16 +56,34 @@ text_blocks = Array[String](["You encounter a", "Stone Golem.", "What do you do?
 position = Vector2(80, 73)
 texture = ExtResource("2_aoen0")
 
-[node name="StoneGolem" type="Sprite2D" parent="." index="1"]
+[node name="Managers" parent="." index="2"]
+script = ExtResource("5_jjs67")
+
+[node name="StoneGolem" type="StaticBody2D" parent="Managers" index="0"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_0e0a2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Managers/StoneGolem" index="0"]
 position = Vector2(80, 64)
 texture = ExtResource("3_mbx0h")
 hframes = 2
-script = ExtResource("4_0e0a2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StoneGolem" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Managers/StoneGolem" index="1"]
+root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_avp1p")
 }
 
-[node name="Managers" parent="." index="3"]
-script = ExtResource("5_jjs67")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem" index="2"]
+visible = false
+position = Vector2(81, 60.5)
+shape = SubResource("RectangleShape2D_m6tug")
+
+[node name="Area2D" type="Area2D" parent="Managers/StoneGolem" index="3"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem/Area2D" index="0"]
+position = Vector2(81, 62)
+shape = SubResource("RectangleShape2D_f5h8q")
