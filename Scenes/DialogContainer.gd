@@ -31,8 +31,9 @@ func _process(delta):
 		process_play_text(delta)
 	pass
 
-func set_text(text: Array[String]):
+func set_text(text: Array[String], options: bool):
 	_text_blocks = text
+	set_options(options)
 	_reset()
 	pass
 
@@ -92,6 +93,10 @@ func _display_options():
 	$Selection_No.visible = true
 	$Selection_Yes.visible = true
 
+func _hide_options():
+	$Selection_No.visible = false
+	$Selection_Yes.visible = false
+
 func _reset():
 	_previous_character_index = -1
 	_current_block = -1
@@ -101,6 +106,8 @@ func _reset():
 
 func set_options(value: bool):
 	_has_options = value
+	if not _has_options:
+		_hide_options()
 
 func get_selection():
 	return _selected_value

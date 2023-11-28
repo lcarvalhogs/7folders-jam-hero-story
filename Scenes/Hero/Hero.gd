@@ -64,6 +64,11 @@ func move(x: float, y: float):
 
 func set_interactable(interactable: Node2D):
 	_interactable = interactable
+	if interactable == null:
+		cancel_interaction()
 
 func is_interacting():
 	return _is_interacting
+
+func cancel_interaction():
+	_is_interacting = false
