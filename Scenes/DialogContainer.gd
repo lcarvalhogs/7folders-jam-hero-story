@@ -13,6 +13,7 @@ var _current_selection = 1
 var _selected_value = -1
 
 var _has_options: bool = false
+var _id: int = 0
 
 func _init():
 	visible = false
@@ -31,7 +32,8 @@ func _process(delta):
 		process_play_text(delta)
 	pass
 
-func set_text(text: Array[String], options: bool):
+func set_text(text: Array[String], options: bool, id: int):
+	_id = id
 	_text_blocks = text
 	set_options(options)
 	_reset()
@@ -114,3 +116,6 @@ func get_selection():
 
 func has_selection():
 	return _selected_value >= 0
+
+func get_id():
+	return _id

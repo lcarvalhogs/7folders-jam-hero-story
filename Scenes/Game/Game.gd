@@ -2,6 +2,7 @@ extends Node
 
 @export var initial_scene: String
 
+var game_data: GameData
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("game")
@@ -9,6 +10,7 @@ func _ready():
 
 
 func init():
+	game_data = GameData.new()
 	load_level(initial_scene)
 	pass
 
@@ -34,3 +36,12 @@ func load_level(path: String):
 		result = true
 
 	return result
+
+# API functions
+func modify_status(str: int, dex: int, mag: int):
+	game_data.strength += str
+	game_data.dexterity += dex
+	game_data.magic += mag
+
+func reset_game():
+	init()

@@ -7,15 +7,15 @@ var dialog_container: DialogContainer
 func interact():
 	match type:
 		"ForbiddenForge_battle":
-			dialog_container.set_text(["Fight?"], true)
+			dialog_container.set_text(["Fight?"], true, 1)
 			dialog_container.play_next()
 			return true
 		"ForbiddenForge_back":
-			dialog_container.set_text(["Sneak attack?"], true)
+			dialog_container.set_text(["Sneak attack?"], true, 2)
 			dialog_container.play_next()
 			return true
 		"ForbiddenForge_environment":
-			dialog_container.set_text(["Pull the lever?"], true)
+			dialog_container.set_text(["Touch the cristal?"], true, 3)
 			dialog_container.play_next()
 			return true
 		_:

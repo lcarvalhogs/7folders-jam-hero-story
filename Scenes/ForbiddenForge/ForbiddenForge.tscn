@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bw33w6vk01qxa"]
+[gd_scene load_steps=17 format=3 uid="uid://bbulkn3wdoxeg"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_siqlp"]
 [ext_resource type="Texture2D" uid="uid://b44i3ilnirowj" path="res://Scenes/ForbiddenForge/ForbiddenForge.png" id="2_aoen0"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scenes/ForbiddenForge/StoneGolem.gd" id="4_0e0a2"]
 [ext_resource type="Script" path="res://Scenes/ForbiddenForge/ForbiddenForgeManager.gd" id="5_jjs67"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_3goeg"]
+[ext_resource type="Script" path="res://Scenes/ForbiddenForge/Crystal.gd" id="7_aoy5x"]
+[ext_resource type="Texture2D" uid="uid://cdp6g6du3cdaq" path="res://Scenes/ForbiddenForge/Crystal.png" id="7_ko7j0"]
 
 [sub_resource type="Animation" id="Animation_xm28h"]
 length = 0.001
@@ -52,6 +54,11 @@ size = Vector2(18, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7lrm"]
 size = Vector2(25, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78cj4"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xi8v"]
 
 [node name="Level" instance=ExtResource("1_siqlp")]
 text_blocks = Array[String](["You encounter a", "Stone Golem.", "What do you do?"])
@@ -100,3 +107,23 @@ type = "ForbiddenForge_back"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem/Interactable2" index="0"]
 position = Vector2(79.5, 55.5)
 shape = SubResource("RectangleShape2D_y7lrm")
+
+[node name="Crystal" type="StaticBody2D" parent="Managers" index="1"]
+position = Vector2(23, 99)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("7_aoy5x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Managers/Crystal" index="0"]
+texture = ExtResource("7_ko7j0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Crystal" index="1"]
+shape = SubResource("RectangleShape2D_78cj4")
+
+[node name="Interactable" parent="Managers/Crystal" index="2" instance=ExtResource("6_3goeg")]
+collision_layer = 5
+collision_mask = 3
+type = "ForbiddenForge_environment"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Crystal/Interactable" index="0"]
+shape = SubResource("RectangleShape2D_1xi8v")

@@ -39,7 +39,13 @@ func process_input(delta):
 		STAGE_STATE.DIALOG_CHOICE_SELECT:
 			process_input_dialog_selection(delta)
 		STAGE_STATE.DIALOG_CHOICE_SELECTED:
-			process_dialog_choice_selected_fight(delta)
+			match base_scene.dialog_container.get_id():
+				1:
+					process_dialog_choice_selected_fight(delta)
+				2:
+					process_dialog_choice_selected_sneak(delta)
+				3:
+					process_dialog_choice_selected_crystal(delta)
 	pass
 
 func process_text_dialog(delta: float):
@@ -72,6 +78,15 @@ func process_input_dialog_selection(delta: float):
 
 func _blink_toogle_monster():
 	var sprite: Sprite2D = $StoneGolem/Sprite2D
+	var modulate: Color = sprite.modulate
+	if modulate.a > 0:
+		modulate.a = 0
+	else:
+		modulate.a = 1
+	sprite.modulate = modulate
+
+func _blink_toogle_crystal():
+	var sprite: Sprite2D = $Crystal/Sprite2D
 	var modulate: Color = sprite.modulate
 	if modulate.a > 0:
 		modulate.a = 0
@@ -135,10 +150,24 @@ func _set_fight_player_hit():
 	add_child(_timer)
 	_timer.start()
 
+func _set_crystal_fail_path():
+	_seletion_state = 20
+	_timer_blink = Timer.new()
+	_timer_blink.connect("timeout", _blink_toogle_crystal)
+	_timer_blink.wait_time = .125
+	add_child(_timer_blink)
+	_timer_blink.start()
+
+	_timer = Timer.new()
+	_timer.connect("timeout", _timer_timeout)
+	_timer.wait_time = 2
+	add_child(_timer)
+	_timer.start()
+
 func process_dialog_choice_selected_fight(delta: float):
 	match _seletion_state:
 		0:
-			base_scene.dialog_container.set_text(["You try to slice the", "giant monster in half"], false)
+			base_scene.dialog_container.set_text(["You try to slice the", "giant monster in half."], false, 1)
 			base_scene.dialog_container.play_next()
 			_seletion_state = 1
 		1:
@@ -150,7 +179,7 @@ func process_dialog_choice_selected_fight(delta: float):
 		2:
 			pass
 		3:
-			base_scene.dialog_container.set_text(["You defeated the", "giant monster!", "As the boulders rolls", "you fell the earth shake"], false)
+			base_scene.dialog_container.set_text(["You defeated the", "giant monster!", "As the boulders rolls", "you fell the earth shake."], false, 1)
 			base_scene.dialog_container.play_next()
 			_seletion_state = 4
 		4:
@@ -158,13 +187,14 @@ func process_dialog_choice_selected_fight(delta: float):
 				_player.set_interactable(null)
 				$StoneGolem.queue_free()
 				stage_state = STAGE_STATE.MOVE_PLAYER
+				get_tree().call_group("game", "modify_status", 2, 1, 0)
 			else:
 				process_text_dialog(delta)
 
 		20:
 			pass
 		21:
-			base_scene.dialog_container.set_text(["The monster uses", "your sword as a toothpick", "and throws a boulder", "at you"], false)
+			base_scene.dialog_container.set_text(["The monster uses", "your weapon as a", "toothpick and throws a ", "boulder at you."], false, 1)
 			base_scene.dialog_container.play_next()
 			_seletion_state = 22
 		22:
@@ -177,7 +207,7 @@ func process_dialog_choice_selected_fight(delta: float):
 		23:
 			pass
 		24:
-			base_scene.dialog_container.set_text(["The boulder smashes you ", "like a pancake"], false)
+			base_scene.dialog_container.set_text(["The boulder smashes ", "you like a pancake"], false, 1)
 			base_scene.dialog_container.play_next()
 			_seletion_state = 25
 		25:
@@ -187,23 +217,164 @@ func process_dialog_choice_selected_fight(delta: float):
 				process_text_dialog(delta)
 			pass
 		26:
-			base_scene.dialog_container.set_text(["Game Over"], false)
+			base_scene.dialog_container.set_text(["Game Over"], false, 1)
 			base_scene.dialog_container.play_next()
 			_seletion_state = 27
 		27:
+			if base_scene.dialog_container.has_completed():
+				_seletion_state = 28
+			else:
+				process_text_dialog(delta)
 			pass
+		28:
+			get_tree().call_group("game", "reset_game")
+
+func process_dialog_choice_selected_sneak(delta: float):
+	match _seletion_state:
+		0:
+			base_scene.dialog_container.set_text(["You try to do a", "sneak attack on", "the enemy"], false, 2)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 1
+		1:
+			if base_scene.dialog_container.has_completed():
+				_set_fight_success_path()
+				#_set_fight_fail_path()
+			else:
+				process_text_dialog(delta)
+		2:
+			pass
+		3:
+			base_scene.dialog_container.set_text(["You hit the monster's", "weak spot!", "One by one, the monster's", "rocks start to became dust"], false, 2)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 4
+		4:
+			if base_scene.dialog_container.has_completed():
+				_player.set_interactable(null)
+				$StoneGolem.queue_free()
+				stage_state = STAGE_STATE.MOVE_PLAYER
+				get_tree().call_group("game", "modify_status", 0, 2, 1)
+			else:
+				process_text_dialog(delta)
+
+		20:
+			pass
+		21:
+			base_scene.dialog_container.set_text(["The monster notices a", "sound and suddenly slap", "his hands", "a bug"], false, 2)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 22
+		22:
+			if base_scene.dialog_container.has_completed():
+				_set_fight_player_hit()
+				_seletion_state = 23
+			else:
+				process_text_dialog(delta)
+			pass
+		23:
+			pass
+		24:
+			base_scene.dialog_container.set_text(["The giant hands squashes", "you like a bug!"], false, 2)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 25
+		25:
+			if base_scene.dialog_container.has_completed():
+				_seletion_state = 26
+			else:
+				process_text_dialog(delta)
+			pass
+		26:
+			base_scene.dialog_container.set_text(["Game Over"], false, 1)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 27
+		27:
+			if base_scene.dialog_container.has_completed():
+				_seletion_state = 28
+			else:
+				process_text_dialog(delta)
+			pass
+		28:
+			get_tree().call_group("game", "reset_game")
+
+func process_dialog_choice_selected_crystal(delta: float):
+	match _seletion_state:
+		0:
+			base_scene.dialog_container.set_text(["You absorb the crystal's", "power and infuse your", "weapon with it."], false, 3)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 1
+		1:
+			if base_scene.dialog_container.has_completed():
+				#_set_fight_success_path()
+				_set_crystal_fail_path()
+			else:
+				process_text_dialog(delta)
+		2:
+			pass
+		3:
+			base_scene.dialog_container.set_text(["Without the crystal's", "power, the Golem starts to", "sleep, in a shutdown state"], false, 3)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 4
+		4:
+			if base_scene.dialog_container.has_completed():
+				_player.set_interactable(null)
+				$StoneGolem.queue_free()
+				stage_state = STAGE_STATE.MOVE_PLAYER
+				get_tree().call_group("game", "modify_status", 1, 2, 0)
+			else:
+				process_text_dialog(delta)
+
+		20:
+			pass
+		21:
+			base_scene.dialog_container.set_text(["You have trouble", "trying to control", "the crystal's power."], false, 3)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 22
+		22:
+			if base_scene.dialog_container.has_completed():
+				_set_fight_player_hit()
+				_seletion_state = 23
+			else:
+				process_text_dialog(delta)
+			pass
+		23:
+			pass
+		24:
+			base_scene.dialog_container.set_text(["The crystal explodes", "and it's shards hit", "your vital spots"], false, 3)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 25
+		25:
+			if base_scene.dialog_container.has_completed():
+				_seletion_state = 26
+			else:
+				process_text_dialog(delta)
+			pass
+		26:
+			base_scene.dialog_container.set_text(["Game Over"], false, 1)
+			base_scene.dialog_container.play_next()
+			_seletion_state = 27
+		27:
+			if base_scene.dialog_container.has_completed():
+				_seletion_state = 28
+			else:
+				process_text_dialog(delta)
+			pass
+		28:
+			get_tree().call_group("game", "reset_game")
 
 func _timer_timeout():
 	_timer_blink.stop()
 	_timer.stop()
 	if _seletion_state == 2:
+		if base_scene.dialog_container.get_id() == 3:
+			_blink_reset($Crystal/Sprite2D, 1)
 		_blink_reset($StoneGolem/Sprite2D, 0)
 		_seletion_state = 3
 	elif _seletion_state == 20:
-		_blink_reset($StoneGolem/Sprite2D, 1)
+		if base_scene.dialog_container.get_id() == 3:
+			_blink_reset($Crystal/Sprite2D, 1)
+		else:
+			_blink_reset($StoneGolem/Sprite2D, 1)
 		_seletion_state = 21
 	elif _seletion_state == 23:
-		_blink_reset($Hero/Sprite2D, 1)
+		_blink_reset($Hero/Sprite2D, 0)
 		_seletion_state = 24
 	remove_child(_timer)
 	remove_child(_timer_blink)

@@ -9,10 +9,12 @@ var dialog_container: DialogContainer
 func _ready():
 	print("Base scene ready")
 	dialog_container = $DialogContainer
-	dialog_container.set_text(text_blocks, false)
+	dialog_container.set_text(text_blocks, false, 1)
 	dialog_container.play_next()
 
 	$Managers/StoneGolem/Interactable.set_dialog_container(dialog_container)
 	$Managers/StoneGolem/Interactable2.set_dialog_container(dialog_container)
+
+	$Managers/Cristal/Interactable.set_dialog_container(dialog_container)
 	pass # Replace with function body.
 
