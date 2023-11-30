@@ -90,6 +90,10 @@ func _bind_interactable_elements():
 	$Environment.set_dialog_container(dialog_container)
 	$Environment.connect("body_entered", on_Environment_entered, CONNECT_DEFERRED)
 	$Environment.connect("body_exited", on_Environment_entered, CONNECT_DEFERRED)
+	
+	$Sneak.set_dialog_container(dialog_container)
+	$Sneak.connect("body_entered", on_Sneak_entered, CONNECT_DEFERRED)
+	$Sneak.connect("body_exited", on_Sneak_entered, CONNECT_DEFERRED)
 
 func on_Fight_entered(area):
 	print("on_Fight_entered:")
@@ -111,6 +115,18 @@ func on_Environment_entered(area):
 
 func on_Environment_exited(area):
 	print("on_Environment_exited area:")
+	if area is Hero:
+		area.set_interactable(null)
+	print(area)
+
+func on_Sneak_entered(area):
+	print("on_Sneak_entered:")
+	print(area)
+	if area is Hero:
+		area.set_interactable($Sneak)
+
+func on_Sneak_exited(area):
+	print("on_Sneak_exited area:")
 	if area is Hero:
 		area.set_interactable(null)
 	print(area)
@@ -254,8 +270,81 @@ func process_dialog_choice_selected_fight(delta: float):
 		28:
 			get_tree().call_group("game", "reset_game")
 
+func _set_sneak_fail_path():
+	_seletion_state = 20
+	_timer_blink = Timer.new()
+	add_child(_timer_blink)
+
+	_timer = Timer.new()
+	_timer.connect("timeout", _timer_timeout)
+	_timer.wait_time = 1
+	add_child(_timer)
+	_timer.start()
+
 func process_dialog_choice_selected_sneak(delta):
-	pass
+	match _seletion_state:
+		0:
+			dialog_container.set_text(["Navigating through the", "Enchanted Forest's", "shadows, you search", "for the perfect ", "moment to strike.", "The Mystical Moth seems", "unaware as you position", "yourself for a", "stealthy assault"], false, 2)
+			dialog_container.play_next()
+			_seletion_state = 1
+		1:
+			if dialog_container.has_completed():
+				#_set_fight_success_path()
+				_set_sneak_fail_path()
+			else:
+				process_text_dialog(delta)
+		2:
+			pass
+		3:
+			dialog_container.set_text(["With precise timing,", "you unleash a swift", "and unexpected attack,", "catching the Moth", "off guard.", "Your precise attack", "disrupt the creature's", "ethereal flight, leaving", "it bleeding to death", "on the forest ground."], false, 2)
+			dialog_container.play_next()
+			_seletion_state = 4
+		4:
+			if dialog_container.has_completed():
+				_player.set_interactable(null)
+				$Moth.queue_free()
+				stage_state = STAGE_STATE.MOVE_PLAYER
+				get_tree().call_group("game", "modify_status", 0, 2, 1)
+			else:
+				process_text_dialog(delta)
+
+		20:
+			pass
+		21:
+			dialog_container.set_text(["As you attempt to", "approach the Mystical", "Moth with stealth,","a sudden rustle in the", "enchanted foliage alerts", "the creature to your presence."], false, 2)
+			dialog_container.play_next()
+			_seletion_state = 22
+		22:
+			if dialog_container.has_completed():
+				_set_fight_player_hit()
+				_seletion_state = 23
+			else:
+				process_text_dialog(delta)
+			pass
+		23:
+			pass
+		24:
+			dialog_container.set_text(["In a swift countermove,", "the Moth releases a", "blinding burst of", "magical energy, exposing", "your location.", "Caught off guard and", "unable to evade,", "the intense magical", "surge overwhelms you.", "The last thing you see", "is the radiant glow", "of the Moth's wings as", "the magical onslaught", "takes its toll, leading", "to an unfortunate demise."], false, 2)
+			dialog_container.play_next()
+			_seletion_state = 25
+		25:
+			if dialog_container.has_completed():
+				_seletion_state = 26
+			else:
+				process_text_dialog(delta)
+			pass
+		26:
+			dialog_container.set_text(["Game Over"], false, 2)
+			dialog_container.play_next()
+			_seletion_state = 27
+		27:
+			if dialog_container.has_completed():
+				_seletion_state = 28
+			else:
+				process_text_dialog(delta)
+			pass
+		28:
+			get_tree().call_group("game", "reset_game")
 
 func _set_environment_fail_path():
 	_seletion_state = 20

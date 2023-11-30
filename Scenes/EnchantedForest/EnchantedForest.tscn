@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3iu23vra4pf6"]
+[gd_scene load_steps=15 format=3 uid="uid://3iu23vra4pf6"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_hhdwg"]
 [ext_resource type="Script" path="res://Scenes/EnchantedForest/EnchantedForest.gd" id="2_4jms4"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dh1cq2x18aw68" path="res://Scenes/EnchantedForest/Tree.tscn" id="3_802au"]
 [ext_resource type="Texture2D" uid="uid://cbirp5fpdtdnv" path="res://Scenes/EnchantedForest/Moth-Sheet.png" id="4_v0aul"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_t6gy1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0i7v"]
 
 [sub_resource type="Animation" id="Animation_ul012"]
 length = 0.001
@@ -51,6 +53,8 @@ _data = {
 size = Vector2(24, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wobii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3trd5"]
 
 [node name="Level" instance=ExtResource("1_hhdwg")]
 script = ExtResource("2_4jms4")
@@ -120,6 +124,15 @@ position = Vector2(64, 157)
 [node name="Tree20" parent="Trees" index="19" instance=ExtResource("3_802au")]
 position = Vector2(32, 157)
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Trees" index="20"]
+position = Vector2(13, 1)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trees/StaticBody2D" index="0"]
+position = Vector2(123, 23)
+shape = SubResource("RectangleShape2D_w0i7v")
+
 [node name="Moth" type="StaticBody2D" parent="." index="4"]
 position = Vector2(79, 61)
 collision_layer = 4
@@ -156,3 +169,12 @@ type = "EnchantedForest_environment"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
 position = Vector2(140, 101)
 shape = SubResource("RectangleShape2D_wobii")
+
+[node name="Sneak" parent="." index="6" instance=ExtResource("6_t6gy1")]
+position = Vector2(136, 35)
+collision_layer = 5
+collision_mask = 3
+type = "EnchantedForest_back"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sneak" index="0"]
+shape = SubResource("RectangleShape2D_3trd5")
