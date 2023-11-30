@@ -256,22 +256,94 @@ func process_dialog_choice_selected_fight(delta: float):
 
 func process_dialog_choice_selected_sneak(delta):
 	pass
+
+func _set_environment_fail_path():
+	_seletion_state = 20
+	_timer_blink = Timer.new()
+	_timer_blink.connect("timeout", _blink_toogle_monster)
+	_timer_blink.wait_time = .125
+	add_child(_timer_blink)
+	_timer_blink.start()
+
+	_timer = Timer.new()
+	_timer.connect("timeout", _timer_timeout)
+	_timer.wait_time = 2
+	add_child(_timer)
+	_timer.start()
+
 func process_dialog_choice_selected_environment(delta):
-	pass
+	match _seletion_state:
+		0:
+			dialog_container.set_text(["Seeking to harness the", "magic of the forest", "you call upon the aid", "of nature itself."], false, 3)
+			dialog_container.play_next()
+			_seletion_state = 1
+		1:
+			if dialog_container.has_completed():
+				#_set_fight_success_path()
+				_set_environment_fail_path()
+			else:
+				process_text_dialog(delta)
+		2:
+			pass
+		3:
+			dialog_container.set_text(["Whispers of nature guide", "you as mystical creatures", "emerge to aid your cause.", "Together, you create a", "harmonious force that", "weakens the Moth's", "mystical resilience.", "until no trace of", "the Moth is left"], false, 3)
+			dialog_container.play_next()
+			_seletion_state = 4
+		4:
+			if dialog_container.has_completed():
+				_player.set_interactable(null)
+				$Moth.queue_free()
+				stage_state = STAGE_STATE.MOVE_PLAYER
+				get_tree().call_group("game", "modify_status", 0, 1, 2)
+			else:
+				process_text_dialog(delta)
+
+		20:
+			pass
+		21:
+			dialog_container.set_text(["As you attempt to call", "upon the aid of the", "mystical creatures and", "the forces of nature,", "a discordant energy", "disrupts your connection.", "The creatures, now confused,", "join forces with", "the Mystical Moth."], false, 3)
+			dialog_container.play_next()
+			_seletion_state = 22
+		22:
+			if dialog_container.has_completed():
+				_set_fight_player_hit()
+				_seletion_state = 23
+			else:
+				process_text_dialog(delta)
+			pass
+		23:
+			pass
+		24:
+			dialog_container.set_text(["Now outnumbered,", "the fight became a ", "one-sided blood-bath.", "Your lifeless body", "lies on the ground", "while the Moth drinks", "your blood, mocking one", "more hero that", "dared to defy her."], false, 3)
+			dialog_container.play_next()
+			_seletion_state = 25
+		25:
+			if dialog_container.has_completed():
+				_seletion_state = 26
+			else:
+				process_text_dialog(delta)
+			pass
+		26:
+			dialog_container.set_text(["Game Over"], false, 1)
+			dialog_container.play_next()
+			_seletion_state = 27
+		27:
+			if dialog_container.has_completed():
+				_seletion_state = 28
+			else:
+				process_text_dialog(delta)
+			pass
+		28:
+			get_tree().call_group("game", "reset_game")
 
 func _timer_timeout():
 	_timer_blink.stop()
 	_timer.stop()
 	if _seletion_state == 2:
-		if dialog_container.get_id() == 3:
-			_blink_reset($Environment/Sprite2D, 1)
 		_blink_reset($Moth/Sprite2D, 0)
 		_seletion_state = 3
 	elif _seletion_state == 20:
-		if dialog_container.get_id() == 3:
-			_blink_reset($Environment/Sprite2D, 1)
-		else:
-			_blink_reset($Moth/Sprite2D, 1)
+		_blink_reset($Moth/Sprite2D, 1)
 		_seletion_state = 21
 	elif _seletion_state == 23:
 		_blink_reset($Hero/Sprite2D, 0)

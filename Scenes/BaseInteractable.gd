@@ -26,8 +26,8 @@ func interact():
 			dialog_container.set_text(["Hide in the trees?"], true, 2)
 			dialog_container.play_next()
 			return true
-		"ForbiddenForge_environment":
-			dialog_container.set_text(["Communicate with the tree spirits?"], true, 3)
+		"EnchantedForest_environment":
+			dialog_container.set_text(["Talk to the trees?"], true, 3)
 			dialog_container.play_next()
 			return true
 		_:

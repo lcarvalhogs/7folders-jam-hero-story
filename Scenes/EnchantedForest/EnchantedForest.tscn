@@ -151,7 +151,7 @@ shape = SubResource("RectangleShape2D_esf2n")
 [node name="Environment" parent="." index="5" instance=ExtResource("6_t6gy1")]
 collision_layer = 5
 collision_mask = 3
-type = "EnchantedForest_back"
+type = "EnchantedForest_environment"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
 position = Vector2(140, 101)
