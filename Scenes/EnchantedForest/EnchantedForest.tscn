@@ -1,10 +1,158 @@
-[gd_scene load_steps=3 format=3 uid="uid://3iu23vra4pf6"]
+[gd_scene load_steps=13 format=3 uid="uid://3iu23vra4pf6"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_hhdwg"]
+[ext_resource type="Script" path="res://Scenes/EnchantedForest/EnchantedForest.gd" id="2_4jms4"]
 [ext_resource type="Texture2D" uid="uid://b47kp062104ot" path="res://Scenes/EnchantedForest/EnchantedForest.png" id="2_gg73p"]
+[ext_resource type="PackedScene" uid="uid://dh1cq2x18aw68" path="res://Scenes/EnchantedForest/Tree.tscn" id="3_802au"]
+[ext_resource type="Texture2D" uid="uid://cbirp5fpdtdnv" path="res://Scenes/EnchantedForest/Moth-Sheet.png" id="4_v0aul"]
+[ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_t6gy1"]
+
+[sub_resource type="Animation" id="Animation_ul012"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5iaoc"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxwb8"]
+_data = {
+"RESET": SubResource("Animation_ul012"),
+"idle": SubResource("Animation_5iaoc")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_roknn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esf2n"]
+size = Vector2(24, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wobii"]
 
 [node name="Level" instance=ExtResource("1_hhdwg")]
+script = ExtResource("2_4jms4")
 
 [node name="Background" parent="." index="0"]
 position = Vector2(80, 72)
 texture = ExtResource("2_gg73p")
+
+[node name="Trees" type="Node2D" parent="." index="1"]
+
+[node name="Tree" parent="Trees" index="0" instance=ExtResource("3_802au")]
+
+[node name="Tree2" parent="Trees" index="1" instance=ExtResource("3_802au")]
+position = Vector2(144, 16)
+
+[node name="Tree3" parent="Trees" index="2" instance=ExtResource("3_802au")]
+position = Vector2(161, 48)
+
+[node name="Tree4" parent="Trees" index="3" instance=ExtResource("3_802au")]
+position = Vector2(144, 80)
+
+[node name="Tree5" parent="Trees" index="4" instance=ExtResource("3_802au")]
+position = Vector2(111, 112)
+
+[node name="Tree6" parent="Trees" index="5" instance=ExtResource("3_802au")]
+position = Vector2(160, 112)
+
+[node name="Tree7" parent="Trees" index="6" instance=ExtResource("3_802au")]
+position = Vector2(16, 32)
+
+[node name="Tree8" parent="Trees" index="7" instance=ExtResource("3_802au")]
+position = Vector2(1, 62)
+
+[node name="Tree9" parent="Trees" index="8" instance=ExtResource("3_802au")]
+position = Vector2(16, 94)
+
+[node name="Tree10" parent="Trees" index="9" instance=ExtResource("3_802au")]
+position = Vector2(9, 127)
+
+[node name="Tree11" parent="Trees" index="10" instance=ExtResource("3_802au")]
+position = Vector2(32, 0)
+
+[node name="Tree12" parent="Trees" index="11" instance=ExtResource("3_802au")]
+position = Vector2(80, 30)
+
+[node name="Tree13" parent="Trees" index="12" instance=ExtResource("3_802au")]
+position = Vector2(112, 30)
+
+[node name="Tree14" parent="Trees" index="13" instance=ExtResource("3_802au")]
+position = Vector2(106, -1)
+
+[node name="Tree15" parent="Trees" index="14" instance=ExtResource("3_802au")]
+position = Vector2(64, 0)
+
+[node name="Tree16" parent="Trees" index="15" instance=ExtResource("3_802au")]
+position = Vector2(96, 157)
+
+[node name="Tree17" parent="Trees" index="16" instance=ExtResource("3_802au")]
+position = Vector2(128, 157)
+
+[node name="Tree18" parent="Trees" index="17" instance=ExtResource("3_802au")]
+position = Vector2(160, 144)
+
+[node name="Tree19" parent="Trees" index="18" instance=ExtResource("3_802au")]
+position = Vector2(64, 157)
+
+[node name="Tree20" parent="Trees" index="19" instance=ExtResource("3_802au")]
+position = Vector2(32, 157)
+
+[node name="Moth" type="StaticBody2D" parent="." index="4"]
+position = Vector2(79, 61)
+collision_layer = 4
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Moth" index="0"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_v0aul")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Moth" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_fxwb8")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moth" index="2"]
+visible = false
+shape = SubResource("RectangleShape2D_roknn")
+
+[node name="Interactable" parent="Moth" index="3" instance=ExtResource("6_t6gy1")]
+collision_layer = 5
+collision_mask = 3
+type = "EnchantedForest_battle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moth/Interactable" index="0"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_esf2n")
+
+[node name="Environment" parent="." index="5" instance=ExtResource("6_t6gy1")]
+collision_layer = 5
+collision_mask = 3
+type = "EnchantedForest_back"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(140, 101)
+shape = SubResource("RectangleShape2D_wobii")

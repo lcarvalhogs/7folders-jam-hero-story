@@ -7,7 +7,7 @@ var dialog_container: DialogContainer
 func interact():
 	match type:
 		"ForbiddenForge_battle":
-			dialog_container.set_text(["Fight?"], true, 1)
+			dialog_container.set_text(["Challenge the Stone Golem?"], true, 1)
 			dialog_container.play_next()
 			return true
 		"ForbiddenForge_back":
@@ -16,6 +16,18 @@ func interact():
 			return true
 		"ForbiddenForge_environment":
 			dialog_container.set_text(["Touch the cristal?"], true, 3)
+			dialog_container.play_next()
+			return true
+		"EnchantedForest_battle":
+			dialog_container.set_text(["Fight the Mystical Moth?"], true, 1)
+			dialog_container.play_next()
+			return true
+		"EnchantedForest_back":
+			dialog_container.set_text(["Hide in the trees?"], true, 2)
+			dialog_container.play_next()
+			return true
+		"ForbiddenForge_environment":
+			dialog_container.set_text(["Communicate with the tree spirits?"], true, 3)
 			dialog_container.play_next()
 			return true
 		_:
