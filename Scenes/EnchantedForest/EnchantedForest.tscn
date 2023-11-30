@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://3iu23vra4pf6"]
+
+[ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_hhdwg"]
+[ext_resource type="Texture2D" uid="uid://b47kp062104ot" path="res://Scenes/EnchantedForest/EnchantedForest.png" id="2_gg73p"]
+
+[node name="Level" instance=ExtResource("1_hhdwg")]
+
+[node name="Background" parent="." index="0"]
+position = Vector2(80, 72)
+texture = ExtResource("2_gg73p")
