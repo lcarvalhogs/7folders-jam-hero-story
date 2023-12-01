@@ -31,7 +31,8 @@ func load_level(path: String):
 
 	var level = load(path)
 	if level != null:
-		var level_instance = level.instantiate()
+		var level_instance: BaseScene = level.instantiate()
+		level_instance.set_game_data(game_data)
 		root.add_child(level_instance)
 		result = true
 

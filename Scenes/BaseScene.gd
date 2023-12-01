@@ -4,6 +4,7 @@ class_name BaseScene
 @export var text_blocks: Array[String]
 
 var dialog_container: DialogContainer
+var game_data: GameData
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,3 +19,5 @@ func _ready():
 	$Managers/Cristal/Interactable.set_dialog_container(dialog_container)
 	pass # Replace with function body.
 
+func set_game_data(data: GameData):
+	game_data = data

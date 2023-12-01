@@ -213,8 +213,10 @@ func process_dialog_choice_selected_fight(delta: float):
 			_seletion_state = 1
 		1:
 			if dialog_container.has_completed():
-				#_set_fight_success_path()
-				_set_fight_fail_path()
+				if game_data.strength > 1:
+					_set_fight_success_path()
+				else:
+					_set_fight_fail_path()
 			else:
 				process_text_dialog(delta)
 		2:
@@ -248,7 +250,7 @@ func process_dialog_choice_selected_fight(delta: float):
 		23:
 			pass
 		24:
-			dialog_container.set_text(["Unable to see, you", "are easily wrapped up", "in by Mystical Moth", "magic, and starts"," to fall asleep,", "never waking up."], false, 1)
+			dialog_container.set_text(["Blinded by the strong", "light, you became an ", "easy target to the", "Mystical Moth's spells.", "You start to became", "uncouncious and falls,", "asleep, never waking."], false, 1)
 			dialog_container.play_next()
 			_seletion_state = 25
 		25:
@@ -289,8 +291,10 @@ func process_dialog_choice_selected_sneak(delta):
 			_seletion_state = 1
 		1:
 			if dialog_container.has_completed():
-				#_set_fight_success_path()
-				_set_sneak_fail_path()
+				if game_data.dexterity > 1:
+					_set_fight_success_path()
+				else:
+					_set_sneak_fail_path()
 			else:
 				process_text_dialog(delta)
 		2:
@@ -368,8 +372,10 @@ func process_dialog_choice_selected_environment(delta):
 			_seletion_state = 1
 		1:
 			if dialog_container.has_completed():
-				#_set_fight_success_path()
-				_set_environment_fail_path()
+				if game_data.magic > 1:
+					_set_fight_success_path()
+				else:
+					_set_environment_fail_path()
 			else:
 				process_text_dialog(delta)
 		2:
