@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://card4pc6t2fpj"]
+
+[ext_resource type="Texture2D" uid="uid://7mwd7uck55xr" path="res://Scenes/LostLibrary/Bookshelf.png" id="1_b8t76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_383ql"]
+size = Vector2(16, 32)
+
+[node name="Bookshelf" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b8t76")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_383ql")

@@ -30,6 +30,18 @@ func interact():
 			dialog_container.set_text(["Talk to the trees?"], true, 3)
 			dialog_container.play_next()
 			return true
+		"LostLibrary_battle":
+			dialog_container.set_text(["Fight the Dark Mage?"], true, 1)
+			dialog_container.play_next()
+			return true
+		"LostLibrary_back":
+			dialog_container.set_text(["Hide behind the shelves?"], true, 2)
+			dialog_container.play_next()
+			return true
+		"LostLibrary_environment":
+			dialog_container.set_text(["Read the arcane book?"], true, 3)
+			dialog_container.play_next()
+			return true
 		_:
 			print("no type detected:" + type)
 			return false

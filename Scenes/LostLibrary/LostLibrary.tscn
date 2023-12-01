@@ -1,0 +1,137 @@
+[gd_scene load_steps=12 format=3 uid="uid://dceekcbr17bec"]
+
+[ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_fjmik"]
+[ext_resource type="Script" path="res://Scenes/LostLibrary/LostLibrary.gd" id="2_q0ew7"]
+[ext_resource type="Texture2D" uid="uid://bvugweq7t34g" path="res://Scenes/LostLibrary/LostLibrary.png" id="2_rc84f"]
+[ext_resource type="PackedScene" uid="uid://card4pc6t2fpj" path="res://Scenes/LostLibrary/Bookshelf.tscn" id="3_g8lbb"]
+[ext_resource type="PackedScene" uid="uid://dcamq40w2hjnc" path="res://Scenes/LostLibrary/Mage.tscn" id="4_gsk5h"]
+[ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_idisv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24yub"]
+size = Vector2(182, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gq30v"]
+size = Vector2(20, 169)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd8sj"]
+size = Vector2(20, 156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apkki"]
+size = Vector2(159, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqror"]
+size = Vector2(16, 20)
+
+[node name="Level" instance=ExtResource("1_fjmik")]
+script = ExtResource("2_q0ew7")
+
+[node name="Background" parent="." index="0"]
+position = Vector2(80, 72)
+texture = ExtResource("2_rc84f")
+
+[node name="Bookshelves" type="Node2D" parent="." index="1"]
+
+[node name="Offsets" type="StaticBody2D" parent="Bookshelves" index="0"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/Offsets" index="0"]
+position = Vector2(81, 6)
+shape = SubResource("RectangleShape2D_24yub")
+
+[node name="Offsets2" type="StaticBody2D" parent="Bookshelves" index="1"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/Offsets2" index="0"]
+position = Vector2(6, 74.5)
+shape = SubResource("RectangleShape2D_gq30v")
+
+[node name="Offsets3" type="StaticBody2D" parent="Bookshelves" index="2"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/Offsets3" index="0"]
+position = Vector2(154, 69)
+shape = SubResource("RectangleShape2D_dd8sj")
+
+[node name="Offsets4" type="StaticBody2D" parent="Bookshelves" index="3"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/Offsets4" index="0"]
+position = Vector2(82.5, 155)
+shape = SubResource("RectangleShape2D_apkki")
+
+[node name="Bookshelf" parent="Bookshelves" index="4" instance=ExtResource("3_g8lbb")]
+position = Vector2(32, 16)
+
+[node name="Bookshelf" parent="Bookshelves/Bookshelf" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(16, 0)
+
+[node name="Bookshelf" parent="Bookshelves/Bookshelf/Bookshelf" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(16, 0)
+
+[node name="Bookshelf" parent="Bookshelves/Bookshelf/Bookshelf/Bookshelf" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(16, 0)
+
+[node name="Bookshelf2" parent="Bookshelves/Bookshelf" index="3" instance=ExtResource("3_g8lbb")]
+position = Vector2(-8, 112)
+
+[node name="Bookshelf2" parent="Bookshelves/Bookshelf/Bookshelf2" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(16, 0)
+
+[node name="Bookshelf2" parent="Bookshelves/Bookshelf/Bookshelf2/Bookshelf2" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(16, 0)
+
+[node name="Bookshelf2" parent="Bookshelves" index="5" instance=ExtResource("3_g8lbb")]
+position = Vector2(24, 64)
+
+[node name="Bookshelf3" parent="Bookshelves/Bookshelf2" index="0" instance=ExtResource("3_g8lbb")]
+position = Vector2(96, 0)
+
+[node name="Bookshelf2" parent="Bookshelves/Bookshelf2" index="3" instance=ExtResource("3_g8lbb")]
+position = Vector2(32, 0)
+
+[node name="Bookshelf4" parent="Bookshelves/Bookshelf2" index="4" instance=ExtResource("3_g8lbb")]
+position = Vector2(0, 15)
+
+[node name="Bookshelf3" parent="Bookshelves" index="6" instance=ExtResource("3_g8lbb")]
+position = Vector2(120, 112)
+
+[node name="Bookshelf3" parent="Bookshelves/Bookshelf3" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(16, 0)
+
+[node name="Bookshelf4" parent="Bookshelves" index="7" instance=ExtResource("3_g8lbb")]
+position = Vector2(136, 16)
+
+[node name="Bookshelf" parent="Bookshelves/Bookshelf4" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(-15, 0)
+
+[node name="Bookshelf" parent="Bookshelves/Bookshelf4/Bookshelf" index="2" instance=ExtResource("3_g8lbb")]
+position = Vector2(15, 32)
+
+[node name="DialogContainer" parent="." index="2"]
+visible = false
+
+[node name="Mage" parent="." index="4" instance=ExtResource("4_gsk5h")]
+position = Vector2(89, 56)
+
+[node name="Environment" parent="." index="5" instance=ExtResource("6_idisv")]
+collision_layer = 5
+collision_mask = 3
+type = "LostLibrary_environment"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(64, 29)
+shape = SubResource("RectangleShape2D_hqror")
+
+[node name="Sneak" parent="." index="6" instance=ExtResource("6_idisv")]
+position = Vector2(16, 65)
+collision_layer = 5
+collision_mask = 3
+type = "LostLibrary_back"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sneak" index="0"]
+position = Vector2(23, -4)
+shape = SubResource("RectangleShape2D_hqror")

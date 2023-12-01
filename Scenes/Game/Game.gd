@@ -11,6 +11,8 @@ func _ready():
 
 func init():
 	game_data = GameData.new()
+	game_data.dexterity = 10
+	game_data.magic = 10
 	load_level(initial_scene)
 	pass
 
