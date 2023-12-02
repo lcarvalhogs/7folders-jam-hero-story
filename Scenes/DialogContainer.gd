@@ -15,6 +15,12 @@ var _selected_value = -1
 var _has_options: bool = false
 var _id: int = 0
 
+@export var message_char_sfx: AudioStream
+@export var message_finish_sfx: AudioStream
+@export var menu_selection_sfx: AudioStream
+@export var menu_confirm_sfx: AudioStream
+
+
 func _init():
 	visible = false
 	pass
@@ -54,6 +60,8 @@ func process_play_text(delta: float):
 		if !_has_options:
 			_has_completed = true
 			visible = false
+			$AudioStreamPlayer2D.stream = message_finish_sfx
+			$AudioStreamPlayer2D.play()
 		return
 
 	if next_character >= len(_text_blocks[_current_block]):
@@ -66,6 +74,8 @@ func process_play_text(delta: float):
 		while(_previous_character_index < next_character):
 			$Label.text += _text_blocks[_current_block][_previous_character_index + 1]
 			_previous_character_index += 1
+		$AudioStreamPlayer2D.stream = message_char_sfx
+		$AudioStreamPlayer2D.play()
 
 	_previous_character_index = next_character
 	_play_elapsed_time += delta
@@ -80,16 +90,22 @@ func process_input():
 	if _is_playing_text:
 		return
 
-	if Input.is_action_just_pressed("move_left"):
+	if Input.is_action_just_pressed("move_left") and _current_selection != 0:
 		_current_selection = 0
 		$Selection_No/Selection.visible = false
 		$Selection_Yes/Selection.visible = true
-	elif Input.is_action_just_pressed("move_right"):
+		$AudioStreamPlayer2D.stream = menu_selection_sfx
+		$AudioStreamPlayer2D.play()
+	elif Input.is_action_just_pressed("move_right")  and _current_selection != 1:
 		_current_selection = 1
 		$Selection_No/Selection.visible = true
 		$Selection_Yes/Selection.visible = false
+		$AudioStreamPlayer2D.stream = menu_selection_sfx
+		$AudioStreamPlayer2D.play()
 	elif Input.is_action_just_pressed("action"):
 		_selected_value = _current_selection
+		$AudioStreamPlayer2D.stream = menu_confirm_sfx
+		$AudioStreamPlayer2D.play()
 
 func _display_options():
 	$Selection_No.visible = true
