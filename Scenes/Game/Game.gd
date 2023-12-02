@@ -3,6 +3,10 @@ extends Node
 @export var initial_scene: String
 
 var game_data: GameData
+
+@export var scene_lost_library_music: AudioStream
+
+const LOST_LIBRARY_PATH: String = "res://Scenes/LostLibrary/LostLibrary.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("game")
@@ -37,6 +41,10 @@ func load_level(path: String):
 		level_instance.set_game_data(game_data)
 		root.add_child(level_instance)
 		result = true
+		if path == LOST_LIBRARY_PATH:
+			$AudioStreamPlayer2D.stream = scene_lost_library_music
+			$AudioStreamPlayer2D.stream
+			$AudioStreamPlayer2D.play()
 
 	return result
 

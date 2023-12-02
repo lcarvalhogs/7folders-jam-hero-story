@@ -11,6 +11,7 @@ var _character_interval: float
 var _play_elapsed_time: float
 var _current_selection = 1
 var _selected_value = -1
+var _sfx_disabled: bool = false
 
 var _has_options: bool = false
 var _id: int = 0
@@ -60,8 +61,7 @@ func process_play_text(delta: float):
 		if !_has_options:
 			_has_completed = true
 			visible = false
-			$AudioStreamPlayer2D.stream = message_finish_sfx
-			$AudioStreamPlayer2D.play()
+			play_sound(message_finish_sfx)
 		return
 
 	if next_character >= len(_text_blocks[_current_block]):
@@ -74,8 +74,7 @@ func process_play_text(delta: float):
 		while(_previous_character_index < next_character):
 			$Label.text += _text_blocks[_current_block][_previous_character_index + 1]
 			_previous_character_index += 1
-		$AudioStreamPlayer2D.stream = message_char_sfx
-		$AudioStreamPlayer2D.play()
+		play_sound(message_char_sfx)
 
 	_previous_character_index = next_character
 	_play_elapsed_time += delta
@@ -94,18 +93,15 @@ func process_input():
 		_current_selection = 0
 		$Selection_No/Selection.visible = false
 		$Selection_Yes/Selection.visible = true
-		$AudioStreamPlayer2D.stream = menu_selection_sfx
-		$AudioStreamPlayer2D.play()
+		play_sound(menu_selection_sfx)
 	elif Input.is_action_just_pressed("move_right")  and _current_selection != 1:
 		_current_selection = 1
 		$Selection_No/Selection.visible = true
 		$Selection_Yes/Selection.visible = false
-		$AudioStreamPlayer2D.stream = menu_selection_sfx
-		$AudioStreamPlayer2D.play()
+		play_sound(menu_selection_sfx)
 	elif Input.is_action_just_pressed("action"):
 		_selected_value = _current_selection
-		$AudioStreamPlayer2D.stream = menu_confirm_sfx
-		$AudioStreamPlayer2D.play()
+		play_sound(menu_confirm_sfx)
 
 func _display_options():
 	$Selection_No.visible = true
@@ -135,3 +131,12 @@ func has_selection():
 
 func get_id():
 	return _id
+
+func disable_sound(status: bool):
+	_sfx_disabled = status
+
+# We only disable the message box complete sound
+func play_sound(sfx: AudioStream):
+	if !_sfx_disabled or sfx != message_finish_sfx:
+		$AudioStreamPlayer2D.stream = sfx
+		$AudioStreamPlayer2D.play()

@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dceekcbr17bec"]
+[gd_scene load_steps=15 format=3 uid="uid://dceekcbr17bec"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_fjmik"]
 [ext_resource type="Script" path="res://Scenes/LostLibrary/LostLibrary.gd" id="2_q0ew7"]
 [ext_resource type="Texture2D" uid="uid://bvugweq7t34g" path="res://Scenes/LostLibrary/LostLibrary.png" id="2_rc84f"]
+[ext_resource type="AudioStream" uid="uid://xna6bu8e8bp2" path="res://sfx/sword.wav" id="3_bgqww"]
 [ext_resource type="PackedScene" uid="uid://card4pc6t2fpj" path="res://Scenes/LostLibrary/Bookshelf.tscn" id="3_g8lbb"]
+[ext_resource type="AudioStream" uid="uid://cb6t0do078auu" path="res://sfx/barrier.wav" id="4_dyqx2"]
 [ext_resource type="PackedScene" uid="uid://dcamq40w2hjnc" path="res://Scenes/LostLibrary/Mage.tscn" id="4_gsk5h"]
+[ext_resource type="AudioStream" uid="uid://birai70e3vsaw" path="res://sfx/fire.wav" id="5_nr2ux"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_idisv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24yub"]
@@ -24,6 +27,9 @@ size = Vector2(16, 20)
 
 [node name="Level" instance=ExtResource("1_fjmik")]
 script = ExtResource("2_q0ew7")
+sword_sfx = ExtResource("3_bgqww")
+barrier_sfx = ExtResource("4_dyqx2")
+fire_sfx = ExtResource("5_nr2ux")
 
 [node name="Background" parent="." index="0"]
 position = Vector2(80, 72)
@@ -85,16 +91,19 @@ position = Vector2(16, 0)
 position = Vector2(16, 0)
 
 [node name="Bookshelf2" parent="Bookshelves" index="5" instance=ExtResource("3_g8lbb")]
-position = Vector2(24, 64)
+position = Vector2(24, 58)
 
 [node name="Bookshelf3" parent="Bookshelves/Bookshelf2" index="0" instance=ExtResource("3_g8lbb")]
-position = Vector2(96, 0)
+position = Vector2(96, 6)
 
 [node name="Bookshelf2" parent="Bookshelves/Bookshelf2" index="3" instance=ExtResource("3_g8lbb")]
-position = Vector2(32, 0)
+position = Vector2(32, 6)
 
 [node name="Bookshelf4" parent="Bookshelves/Bookshelf2" index="4" instance=ExtResource("3_g8lbb")]
 position = Vector2(0, 15)
+
+[node name="Bookshelf" parent="Bookshelves/Bookshelf2" index="5" instance=ExtResource("3_g8lbb")]
+position = Vector2(0, 30)
 
 [node name="Bookshelf3" parent="Bookshelves" index="6" instance=ExtResource("3_g8lbb")]
 position = Vector2(120, 112)
@@ -111,27 +120,27 @@ position = Vector2(-15, 0)
 [node name="Bookshelf" parent="Bookshelves/Bookshelf4/Bookshelf" index="2" instance=ExtResource("3_g8lbb")]
 position = Vector2(15, 32)
 
-[node name="DialogContainer" parent="." index="2"]
-visible = false
-
-[node name="Mage" parent="." index="4" instance=ExtResource("4_gsk5h")]
+[node name="Mage" parent="Managers" index="0" instance=ExtResource("4_gsk5h")]
 position = Vector2(89, 56)
 
-[node name="Environment" parent="." index="5" instance=ExtResource("6_idisv")]
+[node name="Environment" parent="Managers" index="1" instance=ExtResource("6_idisv")]
 collision_layer = 5
 collision_mask = 3
 type = "LostLibrary_environment"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Environment" index="0"]
 position = Vector2(64, 29)
 shape = SubResource("RectangleShape2D_hqror")
 
-[node name="Sneak" parent="." index="6" instance=ExtResource("6_idisv")]
-position = Vector2(16, 65)
+[node name="Sneak" parent="Managers" index="2" instance=ExtResource("6_idisv")]
+position = Vector2(113, 65)
 collision_layer = 5
 collision_mask = 3
 type = "LostLibrary_back"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sneak" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Sneak" index="0"]
 position = Vector2(23, -4)
 shape = SubResource("RectangleShape2D_hqror")
+
+[node name="DialogContainer" parent="." index="3"]
+visible = false
