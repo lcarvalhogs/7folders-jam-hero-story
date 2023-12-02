@@ -5,8 +5,10 @@ extends Node
 var game_data: GameData
 
 @export var scene_lost_library_music: AudioStream
+@export var scene_enchanted_forest_music: AudioStream
 
 const LOST_LIBRARY_PATH: String = "res://Scenes/LostLibrary/LostLibrary.tscn"
+const ENCHANTED_FOREST_PATH: String = "res://Scenes/EnchantedForest/EnchantedForest.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("game")
@@ -43,6 +45,10 @@ func load_level(path: String):
 		result = true
 		if path == LOST_LIBRARY_PATH:
 			$AudioStreamPlayer2D.stream = scene_lost_library_music
+			$AudioStreamPlayer2D.stream
+			$AudioStreamPlayer2D.play()
+		elif path == ENCHANTED_FOREST_PATH:
+			$AudioStreamPlayer2D.stream = scene_enchanted_forest_music
 			$AudioStreamPlayer2D.stream
 			$AudioStreamPlayer2D.play()
 
