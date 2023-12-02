@@ -16,8 +16,8 @@ func _process(delta):
 
 func set_arrow_reference_position(pos: Vector2):
 	position = pos
-	timer.start()
 	timer.wait_time = .125
+	timer.start()
 
 func _blink_reset(sprite: Sprite2D, alpha: float):
 	var modulate: Color = sprite.modulate

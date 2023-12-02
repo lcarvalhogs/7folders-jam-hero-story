@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dukhyun0er1bj"]
+
+[ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_j14au"]
+[ext_resource type="Script" path="res://Scenes/Map/MapRoute.gd" id="2_5hn7f"]
+[ext_resource type="PackedScene" uid="uid://ceaq3t4q0r3et" path="res://Scenes/Map/map_only.tscn" id="2_ss4gn"]
+
+[node name="Level" instance=ExtResource("1_j14au")]
+script = ExtResource("2_5hn7f")
+
+[node name="Map" parent="Managers" index="0" instance=ExtResource("2_ss4gn")]
+position = Vector2(0, -1)

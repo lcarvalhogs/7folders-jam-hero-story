@@ -42,6 +42,12 @@ func interact():
 			dialog_container.set_text(["Read the arcane book?"], true, 3)
 			dialog_container.play_next()
 			return true
+		"TreasureChest":
+			# TODO (lac): do this properly!
+			dialog_container.set_is_treasure_chest(true)
+			dialog_container.set_text(["Choose a weapon"], true, 3)
+			dialog_container.play_next()
+			return true
 		_:
 			print("no type detected:" + type)
 			return false

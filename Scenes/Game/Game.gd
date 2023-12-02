@@ -11,9 +11,19 @@ var game_data: GameData
 const LOST_LIBRARY_PATH: String = "res://Scenes/LostLibrary/LostLibrary.tscn"
 const ENCHANTED_FOREST_PATH: String = "res://Scenes/EnchantedForest/EnchantedForest.tscn"
 const FORBIDDEN_FORGE_PATH: String = "res://Scenes/ForbiddenForge/ForbiddenForge.tscn"
-const MAP_PATH: String = "res://Scenes/Map/Map.tscn"
+const INTRO_PATH: String = "res://Scenes/Map/Map.tscn"
+const MAP_ROUTE_PATH: String = "res://Scenes/Map/MapRoute.tscn"
+const HERO_HOUSE_PATH: String = "res://Scenes/HeroHouse/HeroHouse.tscn"
 
-const LEVELS = [MAP_PATH, FORBIDDEN_FORGE_PATH, ENCHANTED_FOREST_PATH, LOST_LIBRARY_PATH]
+const LEVELS = [
+	INTRO_PATH,
+	HERO_HOUSE_PATH,
+	MAP_ROUTE_PATH,
+	FORBIDDEN_FORGE_PATH,
+	MAP_ROUTE_PATH,
+	ENCHANTED_FOREST_PATH,
+	MAP_ROUTE_PATH,
+	LOST_LIBRARY_PATH]
 
 var _level_number = 0
 @export var fade_time: float = .5
@@ -25,6 +35,7 @@ func _ready():
 
 
 func init():
+	$AudioStreamPlayer2D.stop()
 	game_data = GameData.new()
 
 	load_level(initial_scene)
@@ -63,6 +74,8 @@ func load_level(path: String):
 			$AudioStreamPlayer2D.stream = scene_forbidden_forge_music
 			$AudioStreamPlayer2D.stream
 			$AudioStreamPlayer2D.play()
+		elif path == MAP_ROUTE_PATH:
+			level_instance.set_arrow_reference_position(_level_number)
 
 	return result
 

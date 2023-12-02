@@ -1,5 +1,5 @@
 extends BaseScene
-class_name BaseSceneForest
+class_name BaseSceneMap
 
 var _map: Node2D
 var _scroll: bool = false
@@ -7,6 +7,7 @@ var _scroll: bool = false
 enum STAGE_STATE {INTRO, STARTING, HERE_LOCATION}
 var stage_state: STAGE_STATE = STAGE_STATE.INTRO
 var _timer: Timer = Timer.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_map = $Managers/Map
@@ -43,7 +44,7 @@ func process_input(delta):
 				dialog_container.visible = false
 				$Managers/Map/HereArrow.set_arrow_reference_position(Vector2(43,30))
 				stage_state = STAGE_STATE.HERE_LOCATION
-				_timer.start()				
+				_timer.start()
 		STAGE_STATE.HERE_LOCATION:
 			# Do nothing: this in handled by the timer
 			pass

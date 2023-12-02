@@ -13,6 +13,7 @@ scene_enchanted_forest_music = ExtResource("3_4s61m")
 scene_forbidden_forge_music = ExtResource("4_1ph5u")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 1.0
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = 10

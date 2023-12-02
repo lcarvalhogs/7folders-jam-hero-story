@@ -1,0 +1,154 @@
+[gd_scene load_steps=19 format=3 uid="uid://dcgo5xijancus"]
+
+[ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_4afnw"]
+[ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="1_qlg13"]
+[ext_resource type="Script" path="res://Scenes/HeroHouse/HeroHouse.gd" id="2_e01yp"]
+[ext_resource type="Texture2D" uid="uid://b25inp8ofgsrv" path="res://Scenes/HeroHouse/HeroHouse.png" id="3_djgh2"]
+[ext_resource type="PackedScene" uid="uid://bvojb8nrqj0pk" path="res://Scenes/HeroHouse/Drawer.tscn" id="4_eschl"]
+[ext_resource type="PackedScene" uid="uid://80o86t422m63" path="res://Scenes/HeroHouse/Bed.tscn" id="5_hda55"]
+[ext_resource type="PackedScene" uid="uid://dvxrmjy30tmhs" path="res://Scenes/HeroHouse/BigTable.tscn" id="6_x5js6"]
+[ext_resource type="PackedScene" uid="uid://dn34stxl7g0dm" path="res://Scenes/ForbiddenForge/Pot.tscn" id="7_ijkhl"]
+[ext_resource type="Texture2D" uid="uid://lsxi7k24g3" path="res://Scenes/HeroHouse/TreasureChest-Sheet.png" id="9_hoxjn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cg3b"]
+size = Vector2(22, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wag3m"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqfll"]
+size = Vector2(182, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hi2v"]
+size = Vector2(26, 155)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8nee"]
+size = Vector2(20, 157)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rffp3"]
+size = Vector2(81, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qv16q"]
+size = Vector2(76, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mec6k"]
+size = Vector2(55, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxja0"]
+
+[node name="Level" instance=ExtResource("1_4afnw")]
+script = ExtResource("2_e01yp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" index="0"]
+position = Vector2(80, 72)
+texture = ExtResource("3_djgh2")
+
+[node name="Drawer" parent="Managers" index="0" instance=ExtResource("4_eschl")]
+position = Vector2(136, 19)
+
+[node name="Bed" parent="Managers" index="1" instance=ExtResource("5_hda55")]
+position = Vector2(120, 30)
+
+[node name="Drawer2" parent="Managers" index="2" instance=ExtResource("4_eschl")]
+position = Vector2(104, 19)
+
+[node name="BigTable" parent="Managers" index="3" instance=ExtResource("6_x5js6")]
+position = Vector2(83, 75)
+
+[node name="StaticBody2D" parent="Managers" index="4" instance=ExtResource("7_ijkhl")]
+position = Vector2(41, 24)
+
+[node name="StaticBody2D2" parent="Managers" index="5" instance=ExtResource("7_ijkhl")]
+position = Vector2(24, 40)
+
+[node name="StaticBody2D3" parent="Managers" index="6" instance=ExtResource("7_ijkhl")]
+position = Vector2(24, 24)
+
+[node name="StaticBody2D4" parent="Managers" index="7" instance=ExtResource("7_ijkhl")]
+position = Vector2(23, 120)
+
+[node name="StaticBody2D5" parent="Managers" index="8" instance=ExtResource("7_ijkhl")]
+position = Vector2(137, 121)
+
+[node name="Interactable" parent="Managers" index="9" instance=ExtResource("1_qlg13")]
+position = Vector2(73, 24)
+collision_layer = 5
+collision_mask = 3
+type = "TreasureChest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Interactable" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6cg3b")
+
+[node name="Sprite2D" type="Sprite2D" parent="Managers/Interactable" index="1"]
+texture = ExtResource("9_hoxjn")
+hframes = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Managers/Interactable" index="2"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Interactable/StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_wag3m")
+
+[node name="Borders" type="Node2D" parent="Managers" index="10"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Managers/Borders" index="0"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Borders/StaticBody2D" index="0"]
+position = Vector2(81, 3)
+shape = SubResource("RectangleShape2D_vqfll")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Managers/Borders" index="1"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Borders/StaticBody2D2" index="0"]
+position = Vector2(3, 67.5)
+shape = SubResource("RectangleShape2D_4hi2v")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Managers/Borders" index="2"]
+position = Vector2(155, 1)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Borders/StaticBody2D3" index="0"]
+position = Vector2(-1, 68.5)
+shape = SubResource("RectangleShape2D_w8nee")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Managers/Borders" index="3"]
+position = Vector2(1, 138)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Borders/StaticBody2D4" index="0"]
+position = Vector2(30.5, 0)
+shape = SubResource("RectangleShape2D_rffp3")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Managers/Borders" index="4"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Borders/StaticBody2D5" index="0"]
+position = Vector2(126, 138.5)
+shape = SubResource("RectangleShape2D_qv16q")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Managers/Borders" index="5"]
+position = Vector2(59, 149)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Borders/StaticBody2D6" index="0"]
+position = Vector2(17.5, 0)
+shape = SubResource("RectangleShape2D_mec6k")
+
+[node name="Exit" parent="Managers" index="11" instance=ExtResource("1_qlg13")]
+position = Vector2(79, 128)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Exit" index="0"]
+shape = SubResource("RectangleShape2D_mxja0")
+
+[node name="DialogContainer" parent="." index="2"]
+visible = false

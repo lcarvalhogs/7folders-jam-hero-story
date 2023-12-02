@@ -82,3 +82,82 @@ color = Color(0.607843, 0.737255, 0.0588235, 1)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1ckgi")
 volume_db = 3.0
+
+[node name="WeaponsSelection" type="Node2D" parent="."]
+visible = false
+
+[node name="Selection_Bow" type="Node2D" parent="WeaponsSelection"]
+position = Vector2(9, 22)
+
+[node name="ColorRect" type="ColorRect" parent="WeaponsSelection/Selection_Bow"]
+offset_right = 67.0
+offset_bottom = 16.0
+color = Color(0.0588235, 0.219608, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="WeaponsSelection/Selection_Bow"]
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("2_s76ey")
+theme_override_font_sizes/font_size = 8
+text = "Bow"
+
+[node name="Selection" type="ColorRect" parent="WeaponsSelection/Selection_Bow"]
+visible = false
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.607843, 0.737255, 0.0588235, 1)
+
+[node name="Selection_Sword" type="Node2D" parent="WeaponsSelection"]
+position = Vector2(9, 38)
+
+[node name="ColorRect" type="ColorRect" parent="WeaponsSelection/Selection_Sword"]
+offset_right = 67.0
+offset_bottom = 16.0
+color = Color(0.0588235, 0.219608, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="WeaponsSelection/Selection_Sword"]
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("2_s76ey")
+theme_override_font_sizes/font_size = 8
+text = "Sword"
+
+[node name="Selection" type="ColorRect" parent="WeaponsSelection/Selection_Sword"]
+visible = false
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.607843, 0.737255, 0.0588235, 1)
+
+[node name="Selection_Staff" type="Node2D" parent="WeaponsSelection"]
+position = Vector2(9, 54)
+
+[node name="ColorRect" type="ColorRect" parent="WeaponsSelection/Selection_Staff"]
+offset_right = 67.0
+offset_bottom = 16.0
+color = Color(0.0588235, 0.219608, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="WeaponsSelection/Selection_Staff"]
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("2_s76ey")
+theme_override_font_sizes/font_size = 8
+text = "Staff
+"
+
+[node name="Selection" type="ColorRect" parent="WeaponsSelection/Selection_Staff"]
+visible = false
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.607843, 0.737255, 0.0588235, 1)

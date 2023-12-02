@@ -14,3 +14,4 @@ script = ExtResource("1_oqf47")
 position = Vector2(16, 8)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0

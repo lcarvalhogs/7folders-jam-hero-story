@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://db3uhorpxt2v6"]
+
+[ext_resource type="Script" path="res://Scenes/HeroHouse/TreasureChest.gd" id="1_ja3iq"]
+[ext_resource type="Texture2D" uid="uid://lsxi7k24g3" path="res://Scenes/HeroHouse/TreasureChest-Sheet.png" id="2_hn2gx"]
+[ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="3_yjdn0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f7sf"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3lw3"]
+
+[node name="TreasureChest" type="StaticBody2D"]
+script = ExtResource("1_ja3iq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4f7sf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hn2gx")
+hframes = 2
+
+[node name="Interactable" parent="." instance=ExtResource("3_yjdn0")]
+type = "Hero_Chest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("RectangleShape2D_g3lw3")
