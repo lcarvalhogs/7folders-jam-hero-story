@@ -11,6 +11,12 @@ var game_data: GameData
 const LOST_LIBRARY_PATH: String = "res://Scenes/LostLibrary/LostLibrary.tscn"
 const ENCHANTED_FOREST_PATH: String = "res://Scenes/EnchantedForest/EnchantedForest.tscn"
 const FORBIDDEN_FORGE_PATH: String = "res://Scenes/ForbiddenForge/ForbiddenForge.tscn"
+const MAP_PATH: String = "res://Scenes/Map/Map.tscn"
+
+const LEVELS = [MAP_PATH, FORBIDDEN_FORGE_PATH, ENCHANTED_FOREST_PATH, LOST_LIBRARY_PATH]
+
+var _level_number = 0
+@export var fade_time: float = .5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,8 +26,7 @@ func _ready():
 
 func init():
 	game_data = GameData.new()
-	game_data.dexterity = 10
-	game_data.magic = 10
+
 	load_level(initial_scene)
 	pass
 
@@ -69,3 +74,22 @@ func modify_status(str: int, dex: int, mag: int):
 
 func reset_game():
 	init()
+
+func on_next_level():
+	_level_number += 1
+	# NB (lac): Scene transition
+	get_tree().paused = true	# NB (lac): Pause the game, which is in "process" mode (levelr are not)
+	var tween: Tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)	# NB (lac): set tween to always process
+	tween.tween_property($Node2D/Fader, "color:a", 1, fade_time).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)	
+	await(tween.finished)
+
+	load_level(LEVELS[_level_number])
+
+	# NB (lac): Scene transition
+	tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property($Node2D/Fader, "color:a", 0, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	await(tween.finished)
+	get_tree().paused = false
+	# TODO (lac): Do something when there are no more levels

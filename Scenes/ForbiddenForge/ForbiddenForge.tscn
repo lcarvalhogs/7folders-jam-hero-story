@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbulkn3wdoxeg"]
+[gd_scene load_steps=23 format=3 uid="uid://bbulkn3wdoxeg"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_siqlp"]
 [ext_resource type="Texture2D" uid="uid://b44i3ilnirowj" path="res://Scenes/ForbiddenForge/ForbiddenForge.png" id="2_aoen0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/ForbiddenForge/ForbiddenForgeManager.gd" id="5_jjs67"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_3goeg"]
 [ext_resource type="Texture2D" uid="uid://cdp6g6du3cdaq" path="res://Scenes/ForbiddenForge/Crystal.png" id="7_ko7j0"]
+[ext_resource type="PackedScene" uid="uid://dn34stxl7g0dm" path="res://Scenes/ForbiddenForge/Pot.tscn" id="10_ievkd"]
 
 [sub_resource type="Animation" id="Animation_xm28h"]
 length = 0.001
@@ -60,6 +61,18 @@ size = Vector2(20, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1k30"]
 size = Vector2(16.5, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_id8fu"]
+size = Vector2(20, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbeeu"]
+size = Vector2(170, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3c7ix"]
+size = Vector2(20, 166)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oyp8"]
+size = Vector2(162, 20)
 
 [node name="Level" instance=ExtResource("1_siqlp")]
 script = ExtResource("5_jjs67")
@@ -128,3 +141,46 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Environment/StaticBody2D" index="0"]
 position = Vector2(23.75, 98.5)
 shape = SubResource("RectangleShape2D_v1k30")
+
+[node name="Offset" type="StaticBody2D" parent="Managers" index="3"]
+position = Vector2(5, 0)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Offset" index="0"]
+position = Vector2(0, 74)
+shape = SubResource("RectangleShape2D_id8fu")
+
+[node name="Offset2" type="StaticBody2D" parent="Managers" index="4"]
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Offset2" index="0"]
+position = Vector2(75, 4)
+shape = SubResource("RectangleShape2D_lbeeu")
+
+[node name="Offset3" type="StaticBody2D" parent="Managers" index="5"]
+position = Vector2(155, 2)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Offset3" index="0"]
+position = Vector2(0, 73)
+shape = SubResource("RectangleShape2D_3c7ix")
+
+[node name="Offset4" type="StaticBody2D" parent="Managers" index="6"]
+position = Vector2(8, 155)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Offset4" index="0"]
+position = Vector2(71, 0)
+shape = SubResource("RectangleShape2D_1oyp8")
+
+[node name="Stuff" type="Node2D" parent="Managers" index="7"]
+
+[node name="StaticBody2D" parent="Managers/Stuff" index="0" instance=ExtResource("10_ievkd")]
+position = Vector2(26, 58)
+
+[node name="StaticBody2D2" parent="Managers/Stuff" index="1" instance=ExtResource("10_ievkd")]
+position = Vector2(134, 135)
