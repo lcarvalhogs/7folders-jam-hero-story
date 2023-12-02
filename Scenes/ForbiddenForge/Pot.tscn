@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn34stxl7g0dm"]
+
+[ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="1_obv30"]
+[ext_resource type="Texture2D" uid="uid://c84uhscv8mbyh" path="res://Scenes/ForbiddenForge/Pot.png" id="2_j6brn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h8s1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7jlf"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(136, 58)
+collision_layer = 4
+collision_mask = 2
+
+[node name="Interactable" parent="." instance=ExtResource("1_obv30")]
+collision_layer = 5
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable"]
+texture = ExtResource("2_j6brn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("RectangleShape2D_4h8s1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h7jlf")

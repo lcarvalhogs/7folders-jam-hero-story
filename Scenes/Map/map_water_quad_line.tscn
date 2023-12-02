@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ujusnvu34tbu"]
+
+[ext_resource type="PackedScene" uid="uid://b4ubjvptjij6" path="res://Scenes/Map/WaterQuad.tscn" id="1_kwxnp"]
+
+[node name="MapWaterQuadLine" type="Node2D"]
+
+[node name="Water9" parent="." instance=ExtResource("1_kwxnp")]
+position = Vector2(32, -32)
+
+[node name="Water10" parent="." instance=ExtResource("1_kwxnp")]
+position = Vector2(64, -32)
+
+[node name="Water11" parent="." instance=ExtResource("1_kwxnp")]
+position = Vector2(96, -32)
+
+[node name="Water12" parent="." instance=ExtResource("1_kwxnp")]
+position = Vector2(128, -32)
+
+[node name="Water" parent="." instance=ExtResource("1_kwxnp")]
+position = Vector2(0, -32)

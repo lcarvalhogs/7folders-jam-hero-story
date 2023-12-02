@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4ubjvptjij6"]
+
+[ext_resource type="PackedScene" uid="uid://dveu1mqgxx2ar" path="res://Scenes/Map/MapWater.tscn" id="1_aqtch"]
+
+[node name="Water" type="Node2D"]
+
+[node name="Water" parent="." instance=ExtResource("1_aqtch")]
+position = Vector2(8, 9)
+
+[node name="Water2" parent="." instance=ExtResource("1_aqtch")]
+position = Vector2(8, 25)
+
+[node name="Water3" parent="." instance=ExtResource("1_aqtch")]
+position = Vector2(24, 9)
+
+[node name="Water4" parent="." instance=ExtResource("1_aqtch")]
+position = Vector2(24, 25)

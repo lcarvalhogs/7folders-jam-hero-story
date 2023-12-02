@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1cakjg7huc7f"]
+
+[ext_resource type="Texture2D" uid="uid://d1d58vy83o5mm" path="res://Scenes/Map/MapMountain.png" id="1_wdoav"]
+
+[node name="Mountain" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wdoav")
