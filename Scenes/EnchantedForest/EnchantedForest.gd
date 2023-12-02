@@ -208,6 +208,7 @@ func _set_fight_player_hit():
 func process_dialog_choice_selected_fight(delta: float):
 	match _seletion_state:
 		0:
+			dialog_container.disable_sound(true)
 			dialog_container.set_text(["You charge towards", "the Mystical Moth,", "weapon in hand, aiming", "for a powerful strike"], false, 1)
 			dialog_container.play_next()
 			_seletion_state = 1
@@ -286,6 +287,7 @@ func _set_sneak_fail_path():
 func process_dialog_choice_selected_sneak(delta):
 	match _seletion_state:
 		0:
+			dialog_container.disable_sound(true)
 			dialog_container.set_text(["Navigating through the", "Enchanted Forest's", "shadows, you search", "for the perfect ", "moment to strike.", "The Mystical Moth seems", "unaware as you position", "yourself for a", "stealthy assault"], false, 2)
 			dialog_container.play_next()
 			_seletion_state = 1
@@ -367,6 +369,7 @@ func _set_environment_fail_path():
 func process_dialog_choice_selected_environment(delta):
 	match _seletion_state:
 		0:
+			dialog_container.disable_sound(true)
 			dialog_container.set_text(["Seeking to harness the", "magic of the forest", "you call upon the aid", "of nature itself."], false, 3)
 			dialog_container.play_next()
 			_seletion_state = 1

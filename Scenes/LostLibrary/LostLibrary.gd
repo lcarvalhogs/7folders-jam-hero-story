@@ -447,9 +447,3 @@ func _timer_timeout():
 		_seletion_state = 24
 	remove_child(_timer)
 	remove_child(_timer_blink)
-
-
-# We only disable the message box complete sound
-func play_sound(sfx: AudioStream):
-	$AudioStreamPlayer2D.stream = sfx
-	$AudioStreamPlayer2D.play()

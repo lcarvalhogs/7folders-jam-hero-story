@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbulkn3wdoxeg"]
+[gd_scene load_steps=18 format=3 uid="uid://bbulkn3wdoxeg"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_siqlp"]
 [ext_resource type="Texture2D" uid="uid://b44i3ilnirowj" path="res://Scenes/ForbiddenForge/ForbiddenForge.png" id="2_aoen0"]
 [ext_resource type="Texture2D" uid="uid://dqxtjjtcx521e" path="res://Scenes/ForbiddenForge/StoneGolem-Sheet.png" id="3_mbx0h"]
-[ext_resource type="Script" path="res://Scenes/ForbiddenForge/StoneGolem.gd" id="4_0e0a2"]
+[ext_resource type="AudioStream" uid="uid://xna6bu8e8bp2" path="res://sfx/sword.wav" id="3_xruix"]
+[ext_resource type="AudioStream" uid="uid://cb6t0do078auu" path="res://sfx/barrier.wav" id="4_48sng"]
+[ext_resource type="AudioStream" uid="uid://birai70e3vsaw" path="res://sfx/fire.wav" id="5_7emey"]
 [ext_resource type="Script" path="res://Scenes/ForbiddenForge/ForbiddenForgeManager.gd" id="5_jjs67"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_3goeg"]
-[ext_resource type="Script" path="res://Scenes/ForbiddenForge/Crystal.gd" id="7_aoy5x"]
 [ext_resource type="Texture2D" uid="uid://cdp6g6du3cdaq" path="res://Scenes/ForbiddenForge/Crystal.png" id="7_ko7j0"]
 
 [sub_resource type="Animation" id="Animation_xm28h"]
@@ -49,31 +50,30 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6tug"]
 size = Vector2(33, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0073b"]
-size = Vector2(18, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7lrm"]
-size = Vector2(25, 21)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_78cj4"]
-size = Vector2(14, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqo3h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xi8v"]
+size = Vector2(23, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78cj4"]
+size = Vector2(20, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1k30"]
+size = Vector2(16.5, 15)
 
 [node name="Level" instance=ExtResource("1_siqlp")]
-text_blocks = Array[String](["You encounter a", "Stone Golem.", "What do you do?"])
+script = ExtResource("5_jjs67")
+sword_sfx = ExtResource("3_xruix")
+barrier_sfx = ExtResource("4_48sng")
+fire_sfx = ExtResource("5_7emey")
 
 [node name="Background" parent="." index="0"]
 position = Vector2(80, 73)
 texture = ExtResource("2_aoen0")
 
-[node name="Managers" parent="." index="2"]
-script = ExtResource("5_jjs67")
-
 [node name="StoneGolem" type="StaticBody2D" parent="Managers" index="0"]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("4_0e0a2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Managers/StoneGolem" index="0"]
 position = Vector2(80, 64)
@@ -96,34 +96,35 @@ collision_mask = 3
 type = "ForbiddenForge_battle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem/Interactable" index="0"]
-position = Vector2(79, 75)
-shape = SubResource("RectangleShape2D_0073b")
+position = Vector2(80, 76)
+shape = SubResource("RectangleShape2D_hqo3h")
 
-[node name="Interactable2" parent="Managers/StoneGolem" index="4" instance=ExtResource("6_3goeg")]
+[node name="Sneak" parent="Managers" index="1" instance=ExtResource("6_3goeg")]
 collision_layer = 5
 collision_mask = 3
 type = "ForbiddenForge_back"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/StoneGolem/Interactable2" index="0"]
-position = Vector2(79.5, 55.5)
-shape = SubResource("RectangleShape2D_y7lrm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Sneak" index="0"]
+position = Vector2(79.5, 56.5)
+shape = SubResource("RectangleShape2D_1xi8v")
 
-[node name="Crystal" type="StaticBody2D" parent="Managers" index="1"]
-position = Vector2(23, 99)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("7_aoy5x")
-
-[node name="Sprite2D" type="Sprite2D" parent="Managers/Crystal" index="0"]
-texture = ExtResource("7_ko7j0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Crystal" index="1"]
-shape = SubResource("RectangleShape2D_78cj4")
-
-[node name="Interactable" parent="Managers/Crystal" index="2" instance=ExtResource("6_3goeg")]
+[node name="Environment" parent="Managers" index="2" instance=ExtResource("6_3goeg")]
 collision_layer = 5
 collision_mask = 3
 type = "ForbiddenForge_environment"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Crystal/Interactable" index="0"]
-shape = SubResource("RectangleShape2D_1xi8v")
+[node name="Sprite2D" type="Sprite2D" parent="Managers/Environment" index="0"]
+position = Vector2(23, 99)
+texture = ExtResource("7_ko7j0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Environment" index="1"]
+position = Vector2(23, 99.5)
+shape = SubResource("RectangleShape2D_78cj4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Managers/Environment" index="2"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Environment/StaticBody2D" index="0"]
+position = Vector2(23.75, 98.5)
+shape = SubResource("RectangleShape2D_v1k30")
