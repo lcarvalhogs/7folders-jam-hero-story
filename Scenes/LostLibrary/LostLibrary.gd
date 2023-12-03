@@ -91,14 +91,16 @@ func _bind_interactable_elements():
 	$Managers/Mage/Interactable.set_dialog_container(dialog_container)
 	$Managers/Mage/Interactable.connect("body_entered", on_Fight_entered, CONNECT_DEFERRED)
 	$Managers/Mage/Interactable.connect("body_exited", on_Fight_exited, CONNECT_DEFERRED)
-	
+
 	$Managers/Environment.set_dialog_container(dialog_container)
 	$Managers/Environment.connect("body_entered", on_Environment_entered, CONNECT_DEFERRED)
 	$Managers/Environment.connect("body_exited", on_Environment_entered, CONNECT_DEFERRED)
-	
+
 	$Managers/Sneak.set_dialog_container(dialog_container)
 	$Managers/Sneak.connect("body_entered", on_Sneak_entered, CONNECT_DEFERRED)
 	$Managers/Sneak.connect("body_exited", on_Sneak_entered, CONNECT_DEFERRED)
+
+	$Managers/Exit.connect("body_entered", on_Exit_entered, CONNECT_DEFERRED)
 
 func on_Fight_entered(area):
 	print("on_Fight_entered:")

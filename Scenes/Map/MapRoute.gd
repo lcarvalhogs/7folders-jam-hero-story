@@ -30,4 +30,6 @@ func set_arrow_reference_position(val: int):
 			$Managers/Map/HereArrow.set_arrow_reference_position(Vector2(136,70))
 		6:
 			$Managers/Map/HereArrow.set_arrow_reference_position(Vector2(116,32))
+		6:
+			$Managers/Map/HereArrow.set_arrow_reference_position(Vector2(43,30))
 		

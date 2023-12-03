@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dceekcbr17bec"]
+[gd_scene load_steps=16 format=3 uid="uid://dceekcbr17bec"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_fjmik"]
 [ext_resource type="Script" path="res://Scenes/LostLibrary/LostLibrary.gd" id="2_q0ew7"]
@@ -21,6 +21,9 @@ size = Vector2(20, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apkki"]
 size = Vector2(159, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxwta"]
+size = Vector2(87, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqror"]
 size = Vector2(16, 20)
@@ -120,10 +123,19 @@ position = Vector2(-15, 0)
 [node name="Bookshelf" parent="Bookshelves/Bookshelf4/Bookshelf" index="2" instance=ExtResource("3_g8lbb")]
 position = Vector2(15, 32)
 
-[node name="Mage" parent="Managers" index="0" instance=ExtResource("4_gsk5h")]
+[node name="Exit" parent="Managers" index="0" instance=ExtResource("6_idisv")]
+position = Vector2(70, 148)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Exit" index="0"]
+position = Vector2(33.5, 0)
+shape = SubResource("RectangleShape2D_cxwta")
+
+[node name="Mage" parent="Managers" index="1" instance=ExtResource("4_gsk5h")]
 position = Vector2(89, 56)
 
-[node name="Environment" parent="Managers" index="1" instance=ExtResource("6_idisv")]
+[node name="Environment" parent="Managers" index="2" instance=ExtResource("6_idisv")]
 collision_layer = 5
 collision_mask = 3
 type = "LostLibrary_environment"
@@ -132,7 +144,7 @@ type = "LostLibrary_environment"
 position = Vector2(64, 29)
 shape = SubResource("RectangleShape2D_hqror")
 
-[node name="Sneak" parent="Managers" index="2" instance=ExtResource("6_idisv")]
+[node name="Sneak" parent="Managers" index="3" instance=ExtResource("6_idisv")]
 position = Vector2(113, 65)
 collision_layer = 5
 collision_mask = 3
