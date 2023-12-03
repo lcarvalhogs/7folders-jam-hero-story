@@ -194,7 +194,7 @@ func process_dialog_choice_selected_fight(delta: float):
 	match _selection_state:
 		0:
 			dialog_container.disable_sound(true)
-			dialog_container.set_text(["You try to slice the", "giant monster in half."], false, 1)
+			dialog_container.set_text(["The Stone Golem awakens,", "It's eyes glowing with", "elemental energy.", "You brace yourself", "for the imminent battle", "as you face the", "formidable guardian", "of the forge"], false, 1)
 			dialog_container.play_next()
 			_selection_state = 1
 		1:
@@ -210,7 +210,7 @@ func process_dialog_choice_selected_fight(delta: float):
 		2:
 			pass
 		3:
-			dialog_container.set_text(["You defeated the", "giant monster!", "As the boulders rolls", "you fell the earth shake."], false, 1)
+			dialog_container.set_text(["As the defeated", "Stone Golem crumbles,", "the Forbidden Forge falls", "silent once more.", "The ancient guardian", "has been overcome, and", "you stand victorious", "amidst the remnants", "of the battle."], false, 1)
 			dialog_container.play_next()
 			_selection_state = 4
 		4:
@@ -225,7 +225,7 @@ func process_dialog_choice_selected_fight(delta: float):
 		20:
 			pass
 		21:
-			dialog_container.set_text(["The monster uses", "your weapon as a", "toothpick and throws a ", "boulder at you."], false, 1)
+			dialog_container.set_text(["The stone golem proves", "resilient, deflecting your", "strikes with its", "stony exterior.", "Your attacks, though", "skillful, lack the", "necessary force to breach", "its formidable defenses,", "leaving you struggling", "to make an impact."], false, 1)
 			dialog_container.play_next()
 			_selection_state = 22
 		22:
@@ -238,7 +238,7 @@ func process_dialog_choice_selected_fight(delta: float):
 		23:
 			pass
 		24:
-			dialog_container.set_text(["The boulder smashes ", "you like a pancake"], false, 1)
+			dialog_container.set_text(["The golem seizes", "the opportunity and", "delivers a powerful blow,", "catching you off guard", " and crushing every bone", "in your body."], false, 1)
 			dialog_container.play_next()
 			_selection_state = 25
 		25:
@@ -264,7 +264,7 @@ func process_dialog_choice_selected_sneak(delta: float):
 	match _selection_state:
 		0:
 			dialog_container.disable_sound(true)
-			dialog_container.set_text(["You try to do a", "sneak attack on", "the enemy"], false, 2)
+			dialog_container.set_text(["In the shadows of", "the Forbidden Forge,", "you seize the opportunity", "for a sneak attack", "against the stone golem,", "aiming to exploit", "its vulnerabilities."], false, 2)
 			dialog_container.play_next()
 			_selection_state = 1
 		1:
@@ -280,7 +280,7 @@ func process_dialog_choice_selected_sneak(delta: float):
 		2:
 			pass
 		3:
-			dialog_container.set_text(["You hit the monster's", "weak spot!", "One by one, the monster's", "rocks start to became dust"], false, 2)
+			dialog_container.set_text(["With precision and", "finesse, you target", "a critical weak point", "on the Stone Golem.", "Your sneak attack is", "executed flawlessly,", "inflicting significant", "damage."], false, 2)
 			dialog_container.play_next()
 			_selection_state = 4
 		4:
@@ -295,7 +295,7 @@ func process_dialog_choice_selected_sneak(delta: float):
 		20:
 			pass
 		21:
-			dialog_container.set_text(["The monster notices a", "sound and suddenly slap", "his hands", "a bug"], false, 2)
+			dialog_container.set_text(["While attempting a", "precision strike, you", "inadvertently make a", "clumsy maneuver. The golem,", "quick to react, parries", "your attack with ease,", "leaving you exposed."], false, 2)
 			dialog_container.play_next()
 			_selection_state = 22
 		22:
@@ -309,7 +309,7 @@ func process_dialog_choice_selected_sneak(delta: float):
 		23:
 			pass
 		24:
-			dialog_container.set_text(["The giant hands squashes", "you like a bug!"], false, 2)
+			dialog_container.set_text(["The golem releases its grip", "launching you towards", "a stone wall with", "tremendous force.", "The impact resonates", "through the forge,", "and you collapse under", "the intense pressure,", "incapacitated by the", "sheer strength of", "the golem's assault."], false, 2)
 			dialog_container.play_next()
 			_selection_state = 25
 		25:
@@ -335,7 +335,7 @@ func process_dialog_choice_selected_crystal(delta: float):
 	match _selection_state:
 		0:
 			dialog_container.disable_sound(true)
-			dialog_container.set_text(["You absorb the crystal's", "power and infuse your", "weapon with it."], false, 3)
+			dialog_container.set_text(["You attune your", "magical energies to", "the frequency of the", "magic crystal."], false, 3)
 			dialog_container.play_next()
 			_selection_state = 1
 		1:
@@ -353,7 +353,7 @@ func process_dialog_choice_selected_crystal(delta: float):
 		2:
 			pass
 		3:
-			dialog_container.set_text(["Without the crystal's", "power, the Golem starts to", "sleep, in a shutdown state"], false, 3)
+			dialog_container.set_text(["The crystal responds,", "resonating with your", "aura and establishing", "a harmonious connection.", "Withouth the cristal's", "power, the Golem", "collapses on the ground"], false, 3)
 			dialog_container.play_next()
 			_selection_state = 4
 		4:
@@ -368,7 +368,7 @@ func process_dialog_choice_selected_crystal(delta: float):
 		20:
 			pass
 		21:
-			dialog_container.set_text(["You have trouble", "trying to control", "the crystal's power."], false, 3)
+			dialog_container.set_text(["Your attempt to unleash", "controlled magic results", "in a backlash of arcane", "forces. The magic crystal", "retaliates, releasing a", "surge of energy that", "harms you and disrupts", "the overall magical balance", "in the Forbidden Forge."], false, 3)
 			dialog_container.play_next()
 			_selection_state = 22
 		22:
@@ -381,7 +381,7 @@ func process_dialog_choice_selected_crystal(delta: float):
 		23:
 			pass
 		24:
-			dialog_container.set_text(["The crystal explodes", "and it's shards hit", "your vital spots"], false, 3)
+			dialog_container.set_text(["The magic crystal's retaliation", "leaves you momentarily", "incapacitated. As you", "lie on the forge floor,", "the echoes of the", "magical turmoil resonate", "through the chamber,", "emphasizing the severity", "of the unexpected collapse."], false, 3)
 			dialog_container.play_next()
 			_selection_state = 25
 		25:
