@@ -26,3 +26,7 @@ func set_game_data(data: GameData):
 func play_sound(sfx: AudioStream):
 	$AudioStreamPlayer2D.stream = sfx
 	$AudioStreamPlayer2D.play()
+
+func on_Exit_entered(area):
+	if dialog_container.has_selection():
+		get_tree().call_group("game", "on_next_level")

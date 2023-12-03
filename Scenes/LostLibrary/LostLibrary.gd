@@ -6,6 +6,7 @@ enum STAGE_STATE {INTRO, SPAWN_PLAYER, MOVE_PLAYER, DIALOG_CHOICE_SELECT, DIALOG
 
 var stage_state: STAGE_STATE
 var _seletion_state: int
+var _selected_option: int = -1
 
 const PLAYER_RESOURCE: String = "res://Scenes/Hero/Hero.tscn"
 # end of TODO
@@ -77,7 +78,7 @@ func process_input_player(delta: float):
 func process_input_dialog_selection(delta: float):
 	if dialog_container.has_selection():
 		dialog_container.visible = false
-		var _selected_option = dialog_container.get_selection()
+		_selected_option = dialog_container.get_selection()
 		if _selected_option == 1:
 			stage_state = STAGE_STATE.MOVE_PLAYER
 		else:
@@ -107,14 +108,14 @@ func on_Fight_entered(area):
 
 func on_Fight_exited(area):
 	print("on_Fight_exited area:")
-	if area is Hero:
+	if area is Hero and !has_valid_selection():
 		area.set_interactable(null)
 	print(area)
 
 func on_Environment_entered(area):
 	print("on_Environment_entered:")
 	print(area)
-	if area is Hero:
+	if area is Hero and !has_valid_selection():
 		area.set_interactable($Managers/Environment)
 
 func on_Environment_exited(area):
@@ -126,7 +127,7 @@ func on_Environment_exited(area):
 func on_Sneak_entered(area):
 	print("on_Sneak_entered:")
 	print(area)
-	if area is Hero:
+	if area is Hero and !has_valid_selection():
 		area.set_interactable($Managers/Sneak)
 
 func on_Sneak_exited(area):
@@ -447,3 +448,15 @@ func _timer_timeout():
 		_seletion_state = 24
 	remove_child(_timer)
 	remove_child(_timer_blink)
+
+# NB (lac):this returns multiple values on multiple ocasions: we only want to make sure to
+# avoid re-selecting after the battle already finished
+func has_valid_selection():
+	# -1: default value; 1: "no" selection
+	if _selected_option == -1 or _selected_option == 1:
+		return false
+	return true
+
+func on_Exit_entered(area):
+	if has_valid_selection():
+		get_tree().call_group("game", "on_next_level")

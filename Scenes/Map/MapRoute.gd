@@ -1,5 +1,5 @@
 extends BaseScene
-class_name BaseSceneLibrary
+class_name BaseSceneMapRoute
 
 
 var _timer: Timer = Timer.new()

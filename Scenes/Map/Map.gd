@@ -24,7 +24,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if _scroll:
-		print(_map.position.y)
 		_map.position.y -= 5*16*delta
 		if _map.position.y <= 0:
 			_scroll = false

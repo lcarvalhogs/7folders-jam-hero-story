@@ -5,14 +5,10 @@ class_name BaseSceneHeroHouse
 enum STAGE_STATE {INTRO, SPAWN_PLAYER, MOVE_PLAYER, WEAPON_CHOICE_SELECT}
 
 var _stage_state: STAGE_STATE
-var _seletion_state: int
 
 const PLAYER_RESOURCE: String = "res://Scenes/Hero/Hero.tscn"
 # end of TODO
 var _player: Hero
-
-var _timer_blink: Timer
-var _timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,17 +60,17 @@ func process_input_dialog_selection(delta: float):
 		dialog_container.visible = false
 		var _selected_option = dialog_container.get_selection()
 		if _selected_option >= 0:
-			var str = 0
+			var strength = 0
 			var dex = 0
 			var mag = 0
 			match _selected_option:
 				0:
 					dex += 2
 				1:
-					str += 2
+					strength += 2
 				2:
 					mag += 2
-			get_tree().call_group("game", "modify_status", str, dex, mag)
+			get_tree().call_group("game", "modify_status", strength, dex, mag)
 			_stage_state = STAGE_STATE.MOVE_PLAYER
 	else:
 		dialog_container.process_input()
@@ -87,14 +83,10 @@ func _bind_interactable_elements():
 	
 	$Managers/Exit.connect("body_entered", on_Exit_entered, CONNECT_DEFERRED)
 
-func on_Exit_entered(area):
-	if dialog_container.has_selection():
-		get_tree().call_group("game", "on_next_level")
-
 func on_Interactable_entered(area):
 	print("on_Interactable_entered:")
 	print(area)
-	if area is Hero:
+	if area is Hero and !dialog_container.has_selection():
 		area.set_interactable($Managers/Interactable)
 
 func on_Interactable_exited(area):
