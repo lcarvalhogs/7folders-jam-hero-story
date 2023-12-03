@@ -8,6 +8,7 @@ var game_data: GameData
 @export var scene_enchanted_forest_music: AudioStream
 @export var scene_forbidden_forge_music: AudioStream
 @export var scene_map_route_path_music: AudioStream
+@export var scene_intro_path_music: AudioStream
 
 const LOST_LIBRARY_PATH: String = "res://Scenes/LostLibrary/LostLibrary.tscn"
 const ENCHANTED_FOREST_PATH: String = "res://Scenes/EnchantedForest/EnchantedForest.tscn"
@@ -78,6 +79,10 @@ func load_level(path: String):
 			$AudioStreamPlayer2D.stream = scene_forbidden_forge_music
 			$AudioStreamPlayer2D.stream
 			$AudioStreamPlayer2D.play()
+		elif path == INTRO_PATH:
+			$AudioStreamPlayer2D.stream = scene_intro_path_music
+			$AudioStreamPlayer2D.stream
+			$AudioStreamPlayer2D.play()
 		elif path == MAP_ROUTE_PATH:
 			$AudioStreamPlayer2D.stream = scene_map_route_path_music
 			$AudioStreamPlayer2D.stream
@@ -96,6 +101,7 @@ func reset_game():
 	init()
 
 func on_next_level():
+	$AudioStreamPlayer2D.stop()
 	_level_number += 1
 	# NB (lac): Scene transition
 	get_tree().paused = true	# NB (lac): Pause the game, which is in "process" mode (levelr are not)
