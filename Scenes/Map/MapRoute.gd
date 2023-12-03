@@ -5,7 +5,7 @@ class_name BaseSceneMapRoute
 var _timer: Timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_timer.wait_time = 3
+	_timer.wait_time = 3.5
 	_timer.connect("timeout", _timer_timeout)
 	add_child(_timer)
 	_timer.start()
