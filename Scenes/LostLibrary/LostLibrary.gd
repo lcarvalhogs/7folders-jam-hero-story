@@ -295,8 +295,10 @@ func process_dialog_choice_selected_sneak(delta):
 		1:
 			if dialog_container.has_completed():
 				if game_data.dexterity > 1:
+					play_sound(sword_sfx)
 					_set_fight_success_path()
 				else:
+					play_sound(barrier_sfx)
 					_set_sneak_fail_path()
 			else:
 				process_text_dialog(delta)
@@ -323,6 +325,7 @@ func process_dialog_choice_selected_sneak(delta):
 			_seletion_state = 22
 		22:
 			if dialog_container.has_completed():
+				play_sound(fire_sfx)
 				_set_fight_player_hit()
 				_seletion_state = 23
 			else:
@@ -376,8 +379,10 @@ func process_dialog_choice_selected_environment(delta):
 		1:
 			if dialog_container.has_completed():
 				if game_data.magic > 1:
+					play_sound(sword_sfx)
 					_set_fight_success_path()
 				else:
+					play_sound(barrier_sfx)
 					_set_environment_fail_path()
 			else:
 				process_text_dialog(delta)
@@ -404,6 +409,7 @@ func process_dialog_choice_selected_environment(delta):
 			_seletion_state = 22
 		22:
 			if dialog_container.has_completed():
+				play_sound(fire_sfx)
 				_set_fight_player_hit()
 				_seletion_state = 23
 			else:

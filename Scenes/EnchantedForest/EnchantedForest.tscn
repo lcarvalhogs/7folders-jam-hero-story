@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://3iu23vra4pf6"]
+[gd_scene load_steps=18 format=3 uid="uid://3iu23vra4pf6"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_hhdwg"]
 [ext_resource type="Script" path="res://Scenes/EnchantedForest/EnchantedForest.gd" id="2_4jms4"]
 [ext_resource type="Texture2D" uid="uid://b47kp062104ot" path="res://Scenes/EnchantedForest/EnchantedForest.png" id="2_gg73p"]
 [ext_resource type="PackedScene" uid="uid://dh1cq2x18aw68" path="res://Scenes/EnchantedForest/Tree.tscn" id="3_802au"]
+[ext_resource type="AudioStream" uid="uid://xna6bu8e8bp2" path="res://sfx/sword.wav" id="3_nduxv"]
+[ext_resource type="AudioStream" uid="uid://cb6t0do078auu" path="res://sfx/barrier.wav" id="4_t6mgy"]
 [ext_resource type="Texture2D" uid="uid://cbirp5fpdtdnv" path="res://Scenes/EnchantedForest/Moth-Sheet.png" id="4_v0aul"]
+[ext_resource type="AudioStream" uid="uid://birai70e3vsaw" path="res://sfx/fire.wav" id="5_r2dhs"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_t6gy1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0i7v"]
@@ -58,6 +61,9 @@ size = Vector2(24, 27)
 
 [node name="Level" instance=ExtResource("1_hhdwg")]
 script = ExtResource("2_4jms4")
+sword_sfx = ExtResource("3_nduxv")
+barrier_sfx = ExtResource("4_t6mgy")
+fire_sfx = ExtResource("5_r2dhs")
 
 [node name="Background" parent="." index="0"]
 position = Vector2(80, 72)

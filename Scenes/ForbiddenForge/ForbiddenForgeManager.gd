@@ -300,6 +300,7 @@ func process_dialog_choice_selected_sneak(delta: float):
 			_selection_state = 22
 		22:
 			if dialog_container.has_completed():
+				play_sound(fire_sfx)
 				_set_fight_player_hit()
 				_selection_state = 23
 			else:
