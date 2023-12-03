@@ -26,7 +26,11 @@ func _ready():
 	dialog_container.set_text(["You enconter the", "Dark Mage."], false, 1)
 	dialog_container.play_next()
 
-	
+	$Managers/Spot/AnimationPlayer.play("idle")
+	$Managers/Spot/AnimationPlayer.seek(randf_range(0, 0.3))
+	$Managers/Spot2/AnimationPlayer.play("idle")
+
+	$Managers/Spot/AnimationPlayer.seek(randf_range(0, 0.3))
 	$Managers/Mage/AnimationPlayer.play("idle")
 	_bind_interactable_elements()
 	pass
@@ -391,7 +395,7 @@ func process_dialog_choice_selected_environment(delta):
 		2:
 			pass
 		3:
-			dialog_container.set_text(["The arcane torrent", "culminates in a", "cataclysmic eruption.", "Unimaginable forces converge,", "creating a maelstrom", "of destructive energy", "that engulfs the mage.", "The library shakes", "as the cataclysmic forces", "leave nothing but", "echoes in their wake."], false, 3)
+			dialog_container.set_text(["The arcane torrent", "culminates in a", "cataclysmic eruption.", "Unimaginable forces", "converge, creating","a maelstrom of ", "destructive energy", "that engulfs the mage.", "The library shakes", "as the cataclysmic forces", "leave nothing but", "echoes in their wake."], false, 3)
 			dialog_container.play_next()
 			_seletion_state = 4
 		4:

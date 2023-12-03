@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://3iu23vra4pf6"]
+[gd_scene load_steps=21 format=3 uid="uid://3iu23vra4pf6"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_hhdwg"]
 [ext_resource type="Script" path="res://Scenes/EnchantedForest/EnchantedForest.gd" id="2_4jms4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cbirp5fpdtdnv" path="res://Scenes/EnchantedForest/Moth-Sheet.png" id="4_v0aul"]
 [ext_resource type="AudioStream" uid="uid://birai70e3vsaw" path="res://sfx/fire.wav" id="5_r2dhs"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_t6gy1"]
+[ext_resource type="PackedScene" uid="uid://n34wdbn1skmp" path="res://Scenes/Spot.tscn" id="9_4lpv0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0i7v"]
 
@@ -159,6 +160,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Border" index="0"]
 position = Vector2(2, 23)
 shape = SubResource("RectangleShape2D_nmty3")
+
+[node name="Spot" parent="Managers" index="2" instance=ExtResource("9_4lpv0")]
+position = Vector2(138, 101)
+
+[node name="Spot2" parent="Managers" index="3" instance=ExtResource("9_4lpv0")]
+position = Vector2(134, 38)
 
 [node name="Moth" type="StaticBody2D" parent="." index="4"]
 position = Vector2(79, 61)

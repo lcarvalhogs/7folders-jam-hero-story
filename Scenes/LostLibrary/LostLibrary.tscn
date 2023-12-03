@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dceekcbr17bec"]
+[gd_scene load_steps=17 format=3 uid="uid://dceekcbr17bec"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_fjmik"]
 [ext_resource type="Script" path="res://Scenes/LostLibrary/LostLibrary.gd" id="2_q0ew7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dcamq40w2hjnc" path="res://Scenes/LostLibrary/Mage.tscn" id="4_gsk5h"]
 [ext_resource type="AudioStream" uid="uid://birai70e3vsaw" path="res://sfx/fire.wav" id="5_nr2ux"]
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_idisv"]
+[ext_resource type="PackedScene" uid="uid://n34wdbn1skmp" path="res://Scenes/Spot.tscn" id="10_1y32e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24yub"]
 size = Vector2(182, 20)
@@ -153,6 +154,12 @@ type = "LostLibrary_back"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Sneak" index="0"]
 position = Vector2(23, -4)
 shape = SubResource("RectangleShape2D_hqror")
+
+[node name="Spot" parent="Managers" index="4" instance=ExtResource("10_1y32e")]
+position = Vector2(63, 28)
+
+[node name="Spot2" parent="Managers" index="5" instance=ExtResource("10_1y32e")]
+position = Vector2(134, 61)
 
 [node name="DialogContainer" parent="." index="3"]
 visible = false

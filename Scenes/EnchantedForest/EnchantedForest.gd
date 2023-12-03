@@ -26,6 +26,11 @@ func _ready():
 	dialog_container.set_text(["You enconter a ", "Mystical Moth."], false, 1)
 	dialog_container.play_next()
 
+	$Managers/Spot/AnimationPlayer.play("idle")
+	$Managers/Spot/AnimationPlayer.seek(randf_range(0, 0.3))
+
+	$Managers/Spot2/AnimationPlayer.play("idle")
+	$Managers/Spot/AnimationPlayer.seek(randf_range(0, 0.3))
 	
 	$Moth/AnimationPlayer.play("idle")
 	_bind_interactable_elements()
