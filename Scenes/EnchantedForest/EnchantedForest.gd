@@ -99,6 +99,8 @@ func _bind_interactable_elements():
 	$Sneak.set_dialog_container(dialog_container)
 	$Sneak.connect("body_entered", on_Sneak_entered, CONNECT_DEFERRED)
 	$Sneak.connect("body_exited", on_Sneak_entered, CONNECT_DEFERRED)
+	
+	$Managers/Exit.connect("body_entered", on_Exit_entered, CONNECT_DEFERRED)
 
 func on_Fight_entered(area):
 	print("on_Fight_entered:")

@@ -71,6 +71,8 @@ func process_input_dialog_selection(delta: float):
 				2:
 					mag += 2
 			get_tree().call_group("game", "modify_status", strength, dex, mag)
+			# TODO (lac): Refactor this
+			$Managers/Interactable/Sprite2D.frame = 1
 			_stage_state = STAGE_STATE.MOVE_PLAYER
 	else:
 		dialog_container.process_input()

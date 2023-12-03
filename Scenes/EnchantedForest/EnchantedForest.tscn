@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://3iu23vra4pf6"]
+[gd_scene load_steps=20 format=3 uid="uid://3iu23vra4pf6"]
 
 [ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_hhdwg"]
 [ext_resource type="Script" path="res://Scenes/EnchantedForest/EnchantedForest.gd" id="2_4jms4"]
@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dmfaomtvct0bu" path="res://Scenes/BaseInteractable.tscn" id="6_t6gy1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0i7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7bfu"]
+size = Vector2(20, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmty3"]
+size = Vector2(20, 53)
 
 [sub_resource type="Animation" id="Animation_ul012"]
 length = 0.001
@@ -97,40 +103,37 @@ position = Vector2(1, 62)
 [node name="Tree9" parent="Trees" index="8" instance=ExtResource("3_802au")]
 position = Vector2(16, 94)
 
-[node name="Tree10" parent="Trees" index="9" instance=ExtResource("3_802au")]
-position = Vector2(9, 127)
-
-[node name="Tree11" parent="Trees" index="10" instance=ExtResource("3_802au")]
+[node name="Tree11" parent="Trees" index="9" instance=ExtResource("3_802au")]
 position = Vector2(32, 0)
 
-[node name="Tree12" parent="Trees" index="11" instance=ExtResource("3_802au")]
+[node name="Tree12" parent="Trees" index="10" instance=ExtResource("3_802au")]
 position = Vector2(80, 30)
 
-[node name="Tree13" parent="Trees" index="12" instance=ExtResource("3_802au")]
+[node name="Tree13" parent="Trees" index="11" instance=ExtResource("3_802au")]
 position = Vector2(112, 30)
 
-[node name="Tree14" parent="Trees" index="13" instance=ExtResource("3_802au")]
+[node name="Tree14" parent="Trees" index="12" instance=ExtResource("3_802au")]
 position = Vector2(106, -1)
 
-[node name="Tree15" parent="Trees" index="14" instance=ExtResource("3_802au")]
+[node name="Tree15" parent="Trees" index="13" instance=ExtResource("3_802au")]
 position = Vector2(64, 0)
 
-[node name="Tree16" parent="Trees" index="15" instance=ExtResource("3_802au")]
+[node name="Tree16" parent="Trees" index="14" instance=ExtResource("3_802au")]
 position = Vector2(96, 157)
 
-[node name="Tree17" parent="Trees" index="16" instance=ExtResource("3_802au")]
+[node name="Tree17" parent="Trees" index="15" instance=ExtResource("3_802au")]
 position = Vector2(128, 157)
 
-[node name="Tree18" parent="Trees" index="17" instance=ExtResource("3_802au")]
+[node name="Tree18" parent="Trees" index="16" instance=ExtResource("3_802au")]
 position = Vector2(160, 144)
 
-[node name="Tree19" parent="Trees" index="18" instance=ExtResource("3_802au")]
+[node name="Tree19" parent="Trees" index="17" instance=ExtResource("3_802au")]
 position = Vector2(64, 157)
 
-[node name="Tree20" parent="Trees" index="19" instance=ExtResource("3_802au")]
+[node name="Tree20" parent="Trees" index="18" instance=ExtResource("3_802au")]
 position = Vector2(32, 157)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Trees" index="20"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Trees" index="19"]
 position = Vector2(13, 1)
 collision_layer = 4
 collision_mask = 2
@@ -138,6 +141,24 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trees/StaticBody2D" index="0"]
 position = Vector2(123, 23)
 shape = SubResource("RectangleShape2D_w0i7v")
+
+[node name="Exit" parent="Managers" index="0" instance=ExtResource("6_t6gy1")]
+position = Vector2(8, 117)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Exit" index="0"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_j7bfu")
+
+[node name="Border" type="StaticBody2D" parent="Managers" index="1"]
+position = Vector2(-5, 107)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/Border" index="0"]
+position = Vector2(2, 23)
+shape = SubResource("RectangleShape2D_nmty3")
 
 [node name="Moth" type="StaticBody2D" parent="." index="4"]
 position = Vector2(79, 61)
