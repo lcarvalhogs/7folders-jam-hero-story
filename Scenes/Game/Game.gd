@@ -17,6 +17,7 @@ const FORBIDDEN_FORGE_PATH: String = "res://Scenes/ForbiddenForge/ForbiddenForge
 const INTRO_PATH: String = "res://Scenes/Map/Map.tscn"
 const MAP_ROUTE_PATH: String = "res://Scenes/Map/MapRoute.tscn"
 const HERO_HOUSE_PATH: String = "res://Scenes/HeroHouse/HeroHouse.tscn"
+const SUMMARY_PATH: String = "res://Scenes/Summary/Summary.tscn"
 
 const LEVELS = [
 	INTRO_PATH
@@ -28,7 +29,7 @@ const LEVELS = [
 	,MAP_ROUTE_PATH
 	,LOST_LIBRARY_PATH
 	,MAP_ROUTE_PATH
-	,HERO_HOUSE_PATH]
+	,SUMMARY_PATH]
 
 
 var _level_number = 0

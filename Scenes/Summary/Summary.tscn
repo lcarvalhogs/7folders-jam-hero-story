@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://dywfgceq0v14g"]
+
+[ext_resource type="PackedScene" uid="uid://iiu6alwmn3gf" path="res://Scenes/BaseScene.tscn" id="1_6nd8l"]
+[ext_resource type="Script" path="res://Scenes/Summary/Summary.gd" id="2_6r2rb"]
+[ext_resource type="PackedScene" uid="uid://ceaq3t4q0r3et" path="res://Scenes/Map/map_only.tscn" id="3_ymtib"]
+[ext_resource type="FontFile" uid="uid://cedktrt60q57o" path="res://Fonts/TLOZ-Links-Awakening.ttf" id="4_k4wur"]
+[ext_resource type="Texture2D" uid="uid://d1nqqq04wo6ku" path="res://Scenes/Summary/Weapons-Sheet.png" id="5_8srx2"]
+
+[node name="Level" instance=ExtResource("1_6nd8l")]
+script = ExtResource("2_6r2rb")
+
+[node name="Map" parent="Managers" index="0" instance=ExtResource("3_ymtib")]
+position = Vector2(0, 0)
+
+[node name="DialogContainer" parent="." index="2"]
+visible = false
+
+[node name="Dialog" type="Node2D" parent="." index="4"]
+
+[node name="ColorRect" type="ColorRect" parent="Dialog" index="0"]
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 152.0
+offset_bottom = 109.0
+color = Color(0.0588235, 0.219608, 0.0588235, 1)
+
+[node name="Label" type="Label" parent="Dialog" index="1"]
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 149.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("4_k4wur")
+theme_override_font_sizes/font_size = 8
+text = "Thanks for playing!
+
+Now try to get other routes
+by interacting with
+ different objects!"
+
+[node name="Status" type="Node2D" parent="Dialog" index="2"]
+
+[node name="ColorRect" type="ColorRect" parent="Dialog/Status" index="0"]
+offset_left = 16.0
+offset_top = 77.0
+offset_right = 144.0
+offset_bottom = 100.0
+color = Color(0.188235, 0.384314, 0.188235, 1)
+
+[node name="Sword" type="Node2D" parent="Dialog/Status" index="1"]
+position = Vector2(23, 89)
+
+[node name="Sprite2D" type="Sprite2D" parent="Dialog/Status/Sword" index="0"]
+texture = ExtResource("5_8srx2")
+hframes = 3
+
+[node name="Label" type="Label" parent="Dialog/Status/Sword" index="1"]
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_k4wur")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Bow" type="Node2D" parent="Dialog/Status" index="2"]
+position = Vector2(67, 89)
+
+[node name="Sprite2D" type="Sprite2D" parent="Dialog/Status/Bow" index="0"]
+texture = ExtResource("5_8srx2")
+hframes = 3
+frame = 1
+
+[node name="Label" type="Label" parent="Dialog/Status/Bow" index="1"]
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_k4wur")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Staff" type="Node2D" parent="Dialog/Status" index="3"]
+position = Vector2(110, 88)
+
+[node name="Sprite2D" type="Sprite2D" parent="Dialog/Status/Staff" index="0"]
+position = Vector2(1, 0)
+texture = ExtResource("5_8srx2")
+hframes = 3
+frame = 2
+
+[node name="Label" type="Label" parent="Dialog/Status/Staff" index="1"]
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_k4wur")
+theme_override_font_sizes/font_size = 8
+text = "0"

@@ -55,6 +55,8 @@ func process_input(delta):
 		STAGE_STATE.DIALOG_CHOICE_SELECT:
 			process_input_dialog_selection(delta)
 		STAGE_STATE.DIALOG_CHOICE_SELECTED:
+			$Managers/Spot.visible = false
+			$Managers/Spot2.visible = false
 			match dialog_container.get_id():
 				1:
 					process_dialog_choice_selected_fight(delta)

@@ -81,7 +81,7 @@ color = Color(0.607843, 0.737255, 0.0588235, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1ckgi")
-volume_db = 3.0
+volume_db = 1.0
 
 [node name="WeaponsSelection" type="Node2D" parent="."]
 visible = false

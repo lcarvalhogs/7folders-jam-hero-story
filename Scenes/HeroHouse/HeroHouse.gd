@@ -5,6 +5,7 @@ class_name BaseSceneHeroHouse
 enum STAGE_STATE {INTRO, SPAWN_PLAYER, MOVE_PLAYER, WEAPON_CHOICE_SELECT}
 
 var _stage_state: STAGE_STATE
+var _selected_option: int = -1
 
 const PLAYER_RESOURCE: String = "res://Scenes/Hero/Hero.tscn"
 # end of TODO
@@ -52,13 +53,13 @@ func process_input_intro(delta: float):
 func process_input_player(delta: float):
 	if _player != null:
 		_player.process_input(delta)
-		if _player.is_interacting():
+		if _player.is_interacting() and _selected_option == -1:
 			_stage_state = STAGE_STATE.WEAPON_CHOICE_SELECT
 
 func process_input_dialog_selection(delta: float):
 	if dialog_container.has_selection():
 		dialog_container.visible = false
-		var _selected_option = dialog_container.get_selection()
+		_selected_option = dialog_container.get_selection()
 		if _selected_option >= 0:
 			var strength = 0
 			var dex = 0
