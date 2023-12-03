@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbr4gqnxldfe5"]
+[gd_scene load_steps=8 format=3 uid="uid://bbr4gqnxldfe5"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.gd" id="1_3e21h"]
 [ext_resource type="AudioStream" uid="uid://ch73ilvcvcclt" path="res://music/LostLibrary.mp3" id="2_pkj52"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bo54cktv6y346" path="res://music/ForbiddenForge.mp3" id="4_1ph5u"]
 [ext_resource type="AudioStream" uid="uid://pe5wfeair3lw" path="res://music/MapPath.mp3" id="5_t54vc"]
 [ext_resource type="AudioStream" uid="uid://bknylusgomhj0" path="res://music/Intro.mp3" id="6_pbswe"]
+[ext_resource type="AudioStream" uid="uid://t0u4qc5j0xk7" path="res://music/HeroHouse.mp3" id="7_u5a4c"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_3e21h")
@@ -15,6 +16,7 @@ scene_enchanted_forest_music = ExtResource("3_4s61m")
 scene_forbidden_forge_music = ExtResource("4_1ph5u")
 scene_map_route_path_music = ExtResource("5_t54vc")
 scene_intro_path_music = ExtResource("6_pbswe")
+scene_hero_house_path_music = ExtResource("7_u5a4c")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = 1.0

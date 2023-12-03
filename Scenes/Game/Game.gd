@@ -9,6 +9,7 @@ var game_data: GameData
 @export var scene_forbidden_forge_music: AudioStream
 @export var scene_map_route_path_music: AudioStream
 @export var scene_intro_path_music: AudioStream
+@export var scene_hero_house_path_music: AudioStream
 
 const LOST_LIBRARY_PATH: String = "res://Scenes/LostLibrary/LostLibrary.tscn"
 const ENCHANTED_FOREST_PATH: String = "res://Scenes/EnchantedForest/EnchantedForest.tscn"
@@ -88,6 +89,10 @@ func load_level(path: String):
 			$AudioStreamPlayer2D.stream
 			$AudioStreamPlayer2D.play()
 			level_instance.set_arrow_reference_position(_level_number)
+		elif path == HERO_HOUSE_PATH:
+			$AudioStreamPlayer2D.stream = scene_hero_house_path_music
+			$AudioStreamPlayer2D.stream
+			$AudioStreamPlayer2D.play()
 
 	return result
 
